@@ -1,13 +1,281 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  height: 100vh;
+
+  font-family: "Commissioner", sans-serif;
+  font-family: "Fraunces", serif;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+h1,
+h2,
+p {
+  margin: 0;
+}
+
+/* ----------------------------- PAGE ---------------------------- */
+
+.whole-page {
+  display: grid;
+  flex-direction: column;
+}
+
+.article-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  /* ------------------- TEMPORARY CHANGE --------------- */
+  /* grid-template-rows: repeat(3, 1fr); */
+  grid-template-rows: repeat(2, 1fr);
+  align-items: center;
+  justify-items: center;
+}
+
+.article-text {
+  margin-left: 50px;
+  margin-right: 50px;
+  font-size: 26px;
+  line-height: 40px;
+}
+
+/* ------------------------------ CARDS ----------------------------- */
+
+.card-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  background: #fbf5e0;
+  font-family: "Fraunces";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 42px;
+}
+
+/* these groups should not be hard-coded, change later*/
+/* pertain to card-container */
+.group-0 {
+  grid-row: 1;
+  grid-column: 1;
+}
+
+.group-1 {
+  grid-row: 2;
+  grid-column: 2;
+}
+
+.card-main {
+  margin-top: 25px;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 0.2fr 0.8fr;
+  width: 500px;
+  height: 350px;
+  background: white;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 35px;
+}
+
+/* ------TEMPORARY CHANGE -------- */
+/* .saved-cards-container {
+  grid-column: 1 / -1;
+  background: white;
+} */
+
+.saved-cards {
+  background: #fbf5e0;
+}
+
+.top-icons {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.add-minus {
+  display: grid;
+  justify-self: start;
+  margin-top: 25px;
+  margin-left: 25px;
+  cursor: pointer;
+}
+
+.flip {
+  display: grid;
+  justify-self: end;
+  margin-top: 25px;
+  margin-right: 25px;
+  cursor: pointer;
+}
+
+/* ------------------ CARD CONTENT ----------------- */
+
+/* sometimes align self doesn't work here, not sure why.. */
+.title {
+  display: grid;
+  align-self: center;
+  justify-self: center;
+  /* margin-bottom: 80px; */
+}
+
+.definition {
+  width: 400px;
+  text-align: center;
+  display: grid;
+  align-self: center;
+}
+
+.example {
+  margin-left: 60px;
+  margin-right: 40px;
+  margin-top: 20px;
+  display: grid;
+  justify-self: center;
+  font-size: 20px;
+}
+
+/* ----------------------------- BOTTOM ICONS -------------------- */
+
+.bottom-icons {
+  margin-bottom: 25px;
+  width: 360px;
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.arrow {
+  cursor: pointer;
+}
+
+.card-back {
+  font-size: 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* --------------------------------- QUIZ ------------------------ */
+
+.question {
+  margin-top: 20px;
+  font-weight: 800;
+  color: #023047;
+}
+
+.answer {
+  padding: 5px 15px;
+  border: 1px solid #023047;
+  box-sizing: border-box;
+  border-radius: 1em;
+  background: transparent;
+  font-family: "Commissioner", sans-serif;
+  font-weight: 500;
+}
+
+.faded {
+  opacity: 0.5;
+}
+
+.answer-box {
+  margin-top: 10px;
+  position: relative;
+  height: auto;
+  display: flex;
+  justify-content: space-around;
+  gap: 10px;
+}
+
+.quiz-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.app-container {
+  justify-self: center;
+  background-color: #fdf0c3;
+  width: 100%;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.quiz-title-container {
+  margin-top: 25px;
+  width: 500px;
+  color: rgba(0, 0, 0, 0.5);
+  font-weight: 600;
+  font-family: "Commissioner", sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+
+.check-btn,
+.again-btn {
+  background-color: #219ebc;
+  color: #f5f7fb;
+  border: none;
+  border-radius: 1em;
+  cursor: pointer;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  font-family: "Commissioner", sans-serif;
+  font-weight: 200;
+  padding: 6px 30px;
+  font-size: 18px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.again-btn {
+  margin: 0;
+  align-self: flex-end;
+}
+
+.qa-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.selected {
+  background-color: rgba(126, 191, 221, 0.6);
+}
+
+.correct {
+  background-color: #94d7a2;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.incorrect {
+  background-color: rgba(237, 17, 17, 0.68);
+}
+
+/* ----------------------------- TEXTAREA -------------------------- */
+
+.textarea {
+  height: 250px;
+  width: 400px;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  background-color: #fdf0c3;
+  outline: none;
+  resize: none;
+  border: 2px solid black;
+  border-radius: 10px;
+  font-family: "Commissioner", sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.comment-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
 }
