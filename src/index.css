@@ -279,3 +279,7 @@ p {
   justify-content: center;
   gap: 30px;
 }
+
+.used-word {
+  color: red;
+}
