@@ -1,8 +1,9 @@
 import React from "react";
-import Flashcards from "./Flashcards";
-import Comments from "./Comments";
 import { db } from "./firebase-config";
 import { collection, getDocs } from "firebase/firestore";
+import Flashcards from "./Flashcards";
+import Comments from "./Comments";
+import Quiz from "./Quiz";
 
 export default function Article() {
   //----------------------------FIREBASE-----------------------------
@@ -149,6 +150,7 @@ export default function Article() {
         <textarea className="textarea" onChange={readStory}></textarea>
         <div className="checklist-container">{checklistDisplay}</div>
       </div> */}
+      <Quiz />
       <Comments flashcards={flashcards} />
     </div>
   );
