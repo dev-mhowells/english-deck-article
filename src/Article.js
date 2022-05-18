@@ -59,85 +59,43 @@ export default function Article() {
 
   // maps over number of flashcard groups (firebase collections)
   // passes in group and identifier of group as groupNumber so card can be id'd and saved
-  const flashymap = flashcards.map((group, i) => (
-    <Flashcards
-      savedCards={savedCards}
-      save={save}
-      flashcards={group}
-      groupNumber={i}
-    />
-  ));
-
-  // // -------------------------- USER STORY -------------------------
-
-  // const [userStory, setUserStory] = React.useState("");
-  // const [checklist, setChecklist] = React.useState([]);
-  // const [usedWords, setUsedWords] = React.useState([]);
-
-  // // set state for checklist inside useEffect because it was creating an infinite loop
-  // // can't work out why right now, but this fixes it...
-  // // also needs to run more than once or else list does not load on initial page-load
-  // // I think because flashcards would be an empty array at that time
-  // // therefore runs again on flashcard state change
-  // React.useEffect(() => {
-  //   let allFlashyTitles = [];
-  //   // loops over array of flashcards, creates new array for each flashcard, takes title
-  //   for (let i in flashcards) {
-  //     let flashTitles = flashcards[i].map((flashcard) => flashcard.title);
-  //     allFlashyTitles = [...allFlashyTitles, ...flashTitles];
-  //     setChecklist(allFlashyTitles);
-  //   }
-  // }, [flashcards]);
-
-  // // reads input on keystroke, checks if checklist word is written, if so adds to usedWords
-  // // also checks usedWords, if item in usedWords is no longer in input, removes
-  // // from usedWords
-  // function readStory(e) {
-  //   setUserStory(e.target.value);
-
-  //   for (let i in checklist) {
-  //     if (
-  //       userStory.includes(checklist[i]) &&
-  //       !usedWords.includes(checklist[i])
-  //     ) {
-  //       setUsedWords((prevUsedWords) => [...prevUsedWords, checklist[i]]);
-  //     } else if (
-  //       !userStory.includes(checklist[i]) &&
-  //       usedWords.includes(checklist[i])
-  //     ) {
-  //       setUsedWords((prevUsedWords) =>
-  //         prevUsedWords.filter((word) => word !== checklist[i])
-  //       );
-  //     }
-  //   }
-  // }
-  // console.log(usedWords);
-
-  // const checklistDisplay = checklist.map((title) => (
-  //   <p
-  //     className={`checklist-items ${usedWords.includes(title) && "used-word"}`}
-  //   >
-  //     {title}
-  //   </p>
-  // ));
-
-  // console.log(userStory);
+  const flashymap = flashcards.map((group, i) =>
+    i % 2 === 0 ? (
+      <div className="card-text-pair">
+        <Flashcards
+          savedCards={savedCards}
+          save={save}
+          flashcards={group}
+          groupNumber={i}
+        />
+        <p className="article-text">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Natoque
+          vulputate augue suspendisse iaculis eleifend. Hac a, cras semper
+          laoreet nec id. Pretium integer consectetur volutpat nulla adipiscing
+          dui. Scelerisque vel diam in vel sapien dictum sapien ac sed.
+        </p>
+      </div>
+    ) : (
+      <div className="card-text-pair">
+        <p className="article-text">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Natoque
+          vulputate augue suspendisse iaculis eleifend. Hac a, cras semper
+          laoreet nec id. Pretium integer consectetur volutpat nulla adipiscing
+          dui. Scelerisque vel diam in vel sapien dictum sapien ac sed.
+        </p>
+        <Flashcards
+          savedCards={savedCards}
+          save={save}
+          flashcards={group}
+          groupNumber={i}
+        />
+      </div>
+    )
+  );
 
   return (
     <div className="article-container">
       {flashymap}
-      <p className="article-text">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Natoque
-        vulputate augue suspendisse iaculis eleifend. Hac a, cras semper laoreet
-        nec id. Pretium integer consectetur volutpat nulla adipiscing dui.
-        Scelerisque vel diam in vel sapien dictum sapien ac sed.
-      </p>
-      <p className="article-text">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Natoque
-        vulputate augue suspendisse iaculis eleifend. Hac a, cras semper laoreet
-        nec id. Pretium integer consectetur volutpat nulla adipiscing dui.
-        Scelerisque vel diam in vel sapien dictum sapien ac sed.
-      </p>
       {savedCards[0] && (
         <Flashcards
           savedCards={savedCards}
@@ -150,8 +108,12 @@ export default function Article() {
         <textarea className="textarea" onChange={readStory}></textarea>
         <div className="checklist-container">{checklistDisplay}</div>
       </div> */}
-      <Quiz />
-      <Comments flashcards={flashcards} />
+      <div className="quiz-comment-box">
+        <button className="toggle-quiz-btn">Quiz</button>
+        <button className="toggle-story-btn">Your Story</button>
+        <Comments flashcards={flashcards} />
+        <Quiz />
+      </div>
     </div>
   );
 }

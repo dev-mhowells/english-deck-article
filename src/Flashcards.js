@@ -42,9 +42,10 @@ export default function Flashcards(props) {
 
   // the check for groupnumber is because the saved cards has no groupnumber..
   // if has props.deleteCard it means it is the saved cards deck and needs a diff class
+  // first classname removed: group-${props.groupNumber}
   return (
     <div
-      className={`card-container group-${props.groupNumber} ${
+      className={`card-container  ${
         props.deleteCard && "saved-cards-container"
       }`}
     >

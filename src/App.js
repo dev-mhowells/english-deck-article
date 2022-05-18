@@ -17,6 +17,10 @@ export default function App() {
           <h3 className="nav-link sign-up">Sign Up</h3>
         </div>
       </nav>
+      {/* <div className="article-title">
+        <div className="card-container">hi</div>
+        <div className="article-text">hi</div>
+      </div> */}
       <Article />
     </div>
   );

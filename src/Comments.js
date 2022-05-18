@@ -1,4 +1,5 @@
 import React from "react";
+import check from "./icons/check.png";
 
 export default function Comments(props) {
   const [userStory, setUserStory] = React.useState("");
@@ -45,11 +46,16 @@ export default function Comments(props) {
   console.log(usedWords);
 
   const checklistDisplay = checklist.map((title) => (
-    <p
-      className={`checklist-items ${usedWords.includes(title) && "used-word"}`}
-    >
-      {title}
-    </p>
+    <div className="check-word-pair">
+      {usedWords.includes(title) && <img src={check} className="check"></img>}
+      <p
+        className={`checklist-items ${
+          usedWords.includes(title) && "used-word"
+        }`}
+      >
+        {title}
+      </p>
+    </div>
   ));
 
   console.log(userStory);
