@@ -64,6 +64,7 @@ export default function Comments(props) {
     <div className="comment-section">
       <textarea className="textarea" onChange={readStory}></textarea>
       <div className="checklist-container">{checklistDisplay}</div>
+      <button className="post-btn">post</button>
     </div>
   );
 }

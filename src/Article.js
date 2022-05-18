@@ -5,6 +5,8 @@ import Flashcards from "./Flashcards";
 import Comments from "./Comments";
 import Quiz from "./Quiz";
 
+import eye from "./images/eye.png";
+
 export default function Article() {
   //----------------------------FIREBASE-----------------------------
   const [flashcards, setFlashcards] = React.useState([]); // data from firebase
@@ -57,10 +59,16 @@ export default function Article() {
     );
   }
 
+  const [quizStoryDisp, setQuizStoryDisp] = React.useState(true);
+
+  function toggleQuizStory() {
+    setQuizStoryDisp((prevQuizStoryDisp) => !prevQuizStoryDisp);
+  }
+
   // maps over number of flashcard groups (firebase collections)
   // passes in group and identifier of group as groupNumber so card can be id'd and saved
   const flashymap = flashcards.map((group, i) =>
-    i % 2 === 0 ? (
+    i % 2 !== 0 ? (
       <div className="card-text-pair">
         <Flashcards
           savedCards={savedCards}
@@ -95,6 +103,22 @@ export default function Article() {
 
   return (
     <div className="article-container">
+      <div className="card-text-pair">
+        <div className="title-image-container">
+          <div className="image-border">
+            <img src={eye} className="title-image"></img>
+          </div>
+        </div>
+        <div className="article-title-container">
+          <p>
+            <b>Level:</b> Intermediate
+          </p>
+          <h2 className="article-title">Lorem Ipsum Dolor sit Amet</h2>
+          <p>
+            <b>Author:</b> Michael Howells
+          </p>
+        </div>
+      </div>
       {flashymap}
       {savedCards[0] && (
         <Flashcards
@@ -104,15 +128,14 @@ export default function Article() {
           deleteCard={deleteCard}
         />
       )}
-      {/* <div className="comment-section">
-        <textarea className="textarea" onChange={readStory}></textarea>
-        <div className="checklist-container">{checklistDisplay}</div>
-      </div> */}
       <div className="quiz-comment-box">
-        <button className="toggle-quiz-btn">Quiz</button>
-        <button className="toggle-story-btn">Your Story</button>
-        <Comments flashcards={flashcards} />
-        <Quiz />
+        <button className="toggle-quiz-btn" onClick={toggleQuizStory}>
+          Quiz
+        </button>
+        <button className="toggle-story-btn" onClick={toggleQuizStory}>
+          Your Story
+        </button>
+        {quizStoryDisp ? <Quiz /> : <Comments flashcards={flashcards} />}
       </div>
     </div>
   );
