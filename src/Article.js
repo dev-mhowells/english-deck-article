@@ -159,10 +159,16 @@ export default function Article(props) {
         />
       )}
       <div className="quiz-comment-box">
-        <button className="toggle-quiz-btn" onClick={toggleQuizStory}>
+        <button
+          className={`toggle-quiz-btn ${quizStoryDisp && "selected-btn"}`}
+          onClick={toggleQuizStory}
+        >
           Quiz
         </button>
-        <button className="toggle-story-btn" onClick={toggleQuizStory}>
+        <button
+          className={`toggle-story-btn ${!quizStoryDisp && "selected-btn"}`}
+          onClick={toggleQuizStory}
+        >
           Your Story
         </button>
         {quizStoryDisp ? (
@@ -179,6 +185,11 @@ export default function Article(props) {
           <img src={rightTriangle}></img>
         </div>
       </div>
+      <footer>
+        <h4>Home</h4>
+        <h4>Contact</h4>
+        <h4>{!props.isAuth ? "Login" : "Log out"}</h4>
+      </footer>
     </div>
   );
 }

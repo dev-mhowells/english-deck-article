@@ -98,16 +98,17 @@ p {
   width: 50%;
   border-radius: 33px 33px 0px 0px;
   border: none;
-  background: #fdf0c3;
+  background: #fbf5e0;
   padding-top: 10px;
   padding-bottom: 10px;
   margin-top: 10px;
   cursor: pointer;
+  opacity: 0.7;
 }
 
-.toggle-story-btn {
-  background: #fbf5e0;
-  opacity: 0.7;
+.selected-btn {
+  background: #fdf0c3;
+  opacity: 1;
 }
 
 /* ------------------------- NAV --------------------- */
@@ -370,7 +371,6 @@ p {
   align-items: center;
   justify-items: center;
   gap: 30px;
-  border-bottom: 1px solid black;
   background: #fdf0c3;
 }
 
@@ -484,4 +484,19 @@ p {
 .post-author {
   align-self: flex-end;
   margin-top: 12px;
+}
+
+footer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 60px;
+  width: 100%;
+  background-color: #02304780;
+  margin-top: 30px;
+}
+
+footer > * {
+  color: #011f2e;
+  font-weight: 600;
 }
