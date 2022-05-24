@@ -36,8 +36,6 @@ export default function Quiz() {
     };
     getData();
   }, []);
-
-  console.log("index", quiz);
   //-----------------------------------------------------------------------
 
   // questionSet is generated when QuestionsAns is created, serves as an ID for each QuestionAns component

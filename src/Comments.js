@@ -1,10 +1,22 @@
 import React from "react";
 import check from "./icons/check.png";
+import { addDoc, collection } from "firebase/firestore";
+import { db, auth } from "./firebase-config";
 
 export default function Comments(props) {
   const [userStory, setUserStory] = React.useState("");
   const [checklist, setChecklist] = React.useState([]);
   const [usedWords, setUsedWords] = React.useState([]);
+
+  const postsCollectionRef = collection(db, "posts");
+  async function createPost() {
+    await addDoc(postsCollectionRef, {
+      post: userStory,
+      usedWords: usedWords,
+      author: { name: auth.currentUser.displayName, id: auth.currentUser.uid },
+    });
+    console.log("post created");
+  }
 
   // set state for checklist inside useEffect because it was creating an infinite loop
   // can't work out why right now, but this fixes it...
@@ -24,6 +36,7 @@ export default function Comments(props) {
   // reads input on keystroke, checks if checklist word is written, if so adds to usedWords
   // also checks usedWords, if item in usedWords is no longer in input, removes
   // from usedWords
+  // BUG - ONE KEYSTROKE DELAY HERE!!!!!!!!!!!!!!!!!!!!!!
   function readStory(e) {
     setUserStory(e.target.value);
 
@@ -43,7 +56,6 @@ export default function Comments(props) {
       }
     }
   }
-  console.log(usedWords);
 
   const checklistDisplay = checklist.map((title) => (
     <div className="check-word-pair">
@@ -58,13 +70,20 @@ export default function Comments(props) {
     </div>
   ));
 
-  console.log(userStory);
-
+  // post button disabled if not logged in
   return (
     <div className="comment-section">
-      <textarea className="textarea" onChange={readStory}></textarea>
+      <div className="post-box">
+        <textarea className="textarea" onChange={readStory}></textarea>
+        <button
+          className="post-btn"
+          disabled={!props.isAuth}
+          onClick={createPost}
+        >
+          post
+        </button>
+      </div>
       <div className="checklist-container">{checklistDisplay}</div>
-      <button className="post-btn">post</button>
     </div>
   );
 }

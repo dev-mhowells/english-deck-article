@@ -6,10 +6,13 @@ import Comments from "./Comments";
 import Quiz from "./Quiz";
 
 import eye from "./images/eye.png";
+import leftTriangle from "./icons/left-triangle.png";
+import rightTriangle from "./icons/right-triangle.png";
 
-export default function Article() {
+export default function Article(props) {
   //----------------------------FIREBASE-----------------------------
   const [flashcards, setFlashcards] = React.useState([]); // data from firebase
+  const [posts, setPosts] = React.useState([]);
 
   React.useEffect(() => {
     async function getFlashcards() {
@@ -25,6 +28,17 @@ export default function Article() {
       setFlashcards([flashcardsList, flashcardsList2]);
     }
     getFlashcards();
+  }, []);
+
+  React.useEffect(() => {
+    async function getPosts() {
+      const postsCol = collection(db, "posts");
+      const postsSnapshot = await getDocs(postsCol);
+      const allPosts = postsSnapshot.docs.map((doc) => doc.data());
+
+      setPosts(allPosts);
+    }
+    getPosts();
   }, []);
 
   //----------------------------------------------------------------
@@ -65,6 +79,8 @@ export default function Article() {
     setQuizStoryDisp((prevQuizStoryDisp) => !prevQuizStoryDisp);
   }
 
+  // ------------------------------ ARTICLE BODY + FLASHCARDS -------------------
+
   // maps over number of flashcard groups (firebase collections)
   // passes in group and identifier of group as groupNumber so card can be id'd and saved
   const flashymap = flashcards.map((group, i) =>
@@ -101,6 +117,20 @@ export default function Article() {
     )
   );
 
+  // --------------------------------------------------------------------------
+
+  const postsDisplay = posts.map((post) => {
+    return (
+      <div className="posted-story">
+        <p className="post-body">{post.post}</p>
+        <p className="post-author">
+          <b>By: </b>
+          {post.author.name}
+        </p>
+      </div>
+    );
+  });
+
   return (
     <div className="article-container">
       <div className="card-text-pair">
@@ -135,7 +165,19 @@ export default function Article() {
         <button className="toggle-story-btn" onClick={toggleQuizStory}>
           Your Story
         </button>
-        {quizStoryDisp ? <Quiz /> : <Comments flashcards={flashcards} />}
+        {quizStoryDisp ? (
+          <Quiz />
+        ) : (
+          <Comments flashcards={flashcards} isAuth={props.isAuth} />
+        )}
+      </div>
+      <div className="posts-container">
+        <h2 className="comments-title">Comments and Stories</h2>
+        <div className="comment-slider">
+          <img src={leftTriangle}></img>
+          {postsDisplay[0]}
+          <img src={rightTriangle}></img>
+        </div>
       </div>
     </div>
   );
