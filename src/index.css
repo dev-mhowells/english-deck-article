@@ -130,6 +130,7 @@ p {
   height: 100px;
   border-bottom: 2px solid #023047;
   box-shadow: 0px 4px 2px -2px rgba(0, 0, 0, 0.25);
+  position: relative;
 }
 
 .nav,
@@ -177,6 +178,17 @@ p {
   background: white;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 35px;
+}
+
+.saved-cards-title {
+  text-align: center;
+  font-family: "Fraunces";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 42px;
+  color: #023047;
+  margin-top: 30px;
+  margin-bottom: 10px;
 }
 
 .saved-cards-container {
@@ -293,7 +305,7 @@ p {
 }
 
 .app-container {
-  height: 600px;
+  height: 550px;
   justify-self: center;
   background-color: #fdf0c3;
   width: 100%;
@@ -305,8 +317,6 @@ p {
 }
 
 .quiz-title-container {
-  height: 35px;
-  margin-top: 25px;
   width: 700px;
   color: rgba(0, 0, 0, 0.5);
   font-weight: 600;
@@ -334,6 +344,11 @@ p {
   padding: 6px 30px;
   font-size: 18px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.check-btn {
+  margin-top: 40px;
+  margin-bottom: 10px;
 }
 
 .again-btn {
@@ -365,7 +380,7 @@ p {
 /* ----------------------------- TEXTAREA -------------------------- */
 
 .comment-section {
-  height: 600px;
+  height: 550px;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   align-items: center;
@@ -375,6 +390,7 @@ p {
 }
 
 .post-box {
+  margin-top: 30px;
   width: 100%;
   height: 100%;
   display: flex;
@@ -386,19 +402,16 @@ p {
 .post-btn {
   grid-column: 1;
   grid-row: 2;
-  width: 100px;
   justify-self: start;
 }
 
-.post-btn:disabled {
+/* .post-btn:disabled {
   opacity: 0.5;
-}
+} */
 
 .textarea {
-  /* justify-self: flex-end; */
   height: 300px;
   width: 450px;
-  /* margin-top: 40px; */
   margin-bottom: 25px;
   background-color: white;
   outline: none;
@@ -415,7 +428,6 @@ p {
 
 .checklist-container {
   justify-self: start;
-  margin-top: -100px;
 }
 
 .check-word-pair {
@@ -448,10 +460,11 @@ p {
 /* ------------------------------- POSTED --------------------------------*/
 
 .posts-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  height: 450px;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 0.7fr 0.3fr;
+  justify-items: center;
 }
 
 .comments-title {
@@ -460,14 +473,14 @@ p {
   font-weight: 600;
   font-size: 42px;
   color: #023047;
-  margin: 30px;
+  margin-top: 30px;
 }
 
 .comment-slider {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 20px;
+  gap: 30px;
   margin-bottom: 30px;
 }
 
@@ -486,14 +499,18 @@ p {
   margin-top: 12px;
 }
 
+.triangle {
+  cursor: pointer;
+}
+
 footer {
   display: flex;
   justify-content: space-around;
   align-items: center;
   height: 60px;
-  width: 100%;
-  background-color: #02304780;
-  margin-top: 30px;
+  width: 90%;
+  border-top: 2px solid #023047;
+  box-shadow: 0px 4px 2px -2px rgba(0, 0, 0, 0.25);
 }
 
 footer > * {

@@ -77,10 +77,10 @@ export default function Comments(props) {
         <textarea className="textarea" onChange={readStory}></textarea>
         <button
           className="post-btn"
-          disabled={!props.isAuth}
-          onClick={createPost}
+          // disabled={!props.isAuth}
+          onClick={props.isAuth ? createPost : props.googleSignIn}
         >
-          post
+          {props.isAuth ? "post" : "login to post"}
         </button>
       </div>
       <div className="checklist-container">{checklistDisplay}</div>

@@ -28,7 +28,7 @@ export default function App() {
     <div className="whole-page">
       <nav className="nav">
         <div className="nav-left">
-          <h3 className="nav-link">Author</h3>
+          <h3 className="nav-link">Home</h3>
           <h3 className="nav-link">About</h3>
           <h3 className="nav-link">Contact</h3>
         </div>
@@ -42,7 +42,7 @@ export default function App() {
           </h3>
         </div>
       </nav>
-      <Article isAuth={isAuth}/>
+      <Article isAuth={isAuth} googleSignIn={googleSignIn} />
     </div>
   );
 }

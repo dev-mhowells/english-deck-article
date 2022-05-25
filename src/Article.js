@@ -41,7 +41,7 @@ export default function Article(props) {
     getPosts();
   }, []);
 
-  //----------------------------------------------------------------
+  //-----------------------------------------------------------------------
 
   const [savedCards, setSavedCards] = React.useState([]);
 
@@ -79,6 +79,17 @@ export default function Article(props) {
     setQuizStoryDisp((prevQuizStoryDisp) => !prevQuizStoryDisp);
   }
 
+  // ----------- MANAGE WHICH COMMENT TO DISPLAY --------------------------//
+  const [currentComment, setCurrentComment] = React.useState(0);
+
+  function nextComment() {
+    currentComment < postsDisplay.length - 1 &&
+      setCurrentComment((prevComment) => prevComment + 1);
+  }
+
+  function lastComment() {
+    currentComment > 0 && setCurrentComment((prevComment) => prevComment - 1);
+  }
   // ------------------------------ ARTICLE BODY + FLASHCARDS -------------------
 
   // maps over number of flashcard groups (firebase collections)
@@ -120,6 +131,19 @@ export default function Article(props) {
   // --------------------------------------------------------------------------
 
   const postsDisplay = posts.map((post) => {
+    // let allFlashTitles = [];
+    // for (let i in flashcards) {
+    //   let flashTitles = flashcards[i].map((flashcard) => flashcard.title);
+    //   allFlashTitles = [...allFlashTitles, ...flashTitles];
+    // }
+
+    // const words = post.post.split(" ");
+    // words.forEach((word) => {
+    //   if (allFlashTitles.includes(word)) {
+    //     word = "FOUND!!!!";
+    //   }
+    // });
+
     return (
       <div className="posted-story">
         <p className="post-body">{post.post}</p>
@@ -151,12 +175,15 @@ export default function Article(props) {
       </div>
       {flashymap}
       {savedCards[0] && (
-        <Flashcards
-          savedCards={savedCards}
-          save={save}
-          flashcards={savedCards}
-          deleteCard={deleteCard}
-        />
+        <div>
+          <h2 className="saved-cards-title">Your Saved Cards</h2>
+          <Flashcards
+            savedCards={savedCards}
+            save={save}
+            flashcards={savedCards}
+            deleteCard={deleteCard}
+          />
+        </div>
       )}
       <div className="quiz-comment-box">
         <button
@@ -174,15 +201,23 @@ export default function Article(props) {
         {quizStoryDisp ? (
           <Quiz />
         ) : (
-          <Comments flashcards={flashcards} isAuth={props.isAuth} />
+          <Comments flashcards={flashcards} isAuth={props.isAuth} googleSignIn={props.googleSignIn}/>
         )}
       </div>
       <div className="posts-container">
         <h2 className="comments-title">Comments and Stories</h2>
         <div className="comment-slider">
-          <img src={leftTriangle}></img>
-          {postsDisplay[0]}
-          <img src={rightTriangle}></img>
+          <img
+            src={leftTriangle}
+            onClick={lastComment}
+            className="triangle"
+          ></img>
+          {postsDisplay[currentComment]}
+          <img
+            src={rightTriangle}
+            onClick={nextComment}
+            className="triangle"
+          ></img>
         </div>
       </div>
       <footer>
