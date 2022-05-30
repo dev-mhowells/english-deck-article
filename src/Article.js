@@ -7,13 +7,10 @@ import Comments from "./Comments";
 import Quiz from "./Quiz";
 
 import eye from "./images/eye.png";
-import leftTriangle from "./icons/left-triangle.png";
-import rightTriangle from "./icons/right-triangle.png";
 
 export default function Article(props) {
   //----------------------------FIREBASE-----------------------------
   const [flashcards, setFlashcards] = React.useState([]); // data from firebase
-  const [posts, setPosts] = React.useState([]);
 
   React.useEffect(() => {
     async function getFlashcards() {
@@ -29,17 +26,6 @@ export default function Article(props) {
       setFlashcards([flashcardsList, flashcardsList2]);
     }
     getFlashcards();
-  }, []);
-
-  React.useEffect(() => {
-    async function getPosts() {
-      const postsCol = collection(db, "posts");
-      const postsSnapshot = await getDocs(postsCol);
-      const allPosts = postsSnapshot.docs.map((doc) => doc.data());
-
-      setPosts(allPosts);
-    }
-    getPosts();
   }, []);
 
   //-----------------------------------------------------------------------
@@ -78,17 +64,6 @@ export default function Article(props) {
     setQuizStoryDisp((prevQuizStoryDisp) => !prevQuizStoryDisp);
   }
 
-  // -------------------- MANAGE WHICH COMMENT TO DISPLAY --------------------------//
-  const [currentComment, setCurrentComment] = React.useState(0);
-
-  function nextComment() {
-    currentComment < postsDisplay.length - 1 &&
-      setCurrentComment((prevComment) => prevComment + 1);
-  }
-
-  function lastComment() {
-    currentComment > 0 && setCurrentComment((prevComment) => prevComment - 1);
-  }
   // ------------------------------ ARTICLE BODY + FLASHCARDS ------------------------
 
   // maps over number of flashcard groups (firebase collections)
@@ -129,30 +104,19 @@ export default function Article(props) {
 
   // --------------------------------------------------------------------------
 
-  const postsDisplay = posts.map((post) => {
-    // let allFlashTitles = [];
-    // for (let i in flashcards) {
-    //   let flashTitles = flashcards[i].map((flashcard) => flashcard.title);
-    //   allFlashTitles = [...allFlashTitles, ...flashTitles];
-    // }
+  // const postsDisplay = posts.map((post) => {
+  //   // let allFlashTitles = [];
+  //   // for (let i in flashcards) {
+  //   //   let flashTitles = flashcards[i].map((flashcard) => flashcard.title);
+  //   //   allFlashTitles = [...allFlashTitles, ...flashTitles];
+  //   // }
 
-    // const words = post.post.split(" ");
-    // words.forEach((word) => {
-    //   if (allFlashTitles.includes(word)) {
-    //     word = "FOUND!!!!";
-    //   }
-    // });
-
-    return (
-      <div className="posted-story">
-        <p className="post-body">{post.post}</p>
-        <p className="post-author">
-          <b>By: </b>
-          {post.author.name}
-        </p>
-      </div>
-    );
-  });
+  //   // const words = post.post.split(" ");
+  //   // words.forEach((word) => {
+  //   //   if (allFlashTitles.includes(word)) {
+  //   //     word = "FOUND!!!!";
+  //   //   }
+  //   // });
 
   return (
     <div className="article-container">
@@ -204,24 +168,9 @@ export default function Article(props) {
             flashcards={flashcards}
             isAuth={props.isAuth}
             googleSignIn={props.googleSignIn}
+            // posts={posts}
           />
         )}
-      </div>
-      <div className="posts-container">
-        <h2 className="comments-title">Comments and Stories</h2>
-        <div className="comment-slider">
-          <img
-            src={leftTriangle}
-            onClick={lastComment}
-            className="triangle"
-          ></img>
-          {postsDisplay[currentComment]}
-          <img
-            src={rightTriangle}
-            onClick={nextComment}
-            className="triangle"
-          ></img>
-        </div>
       </div>
       <footer>
         <h4>Home</h4>
