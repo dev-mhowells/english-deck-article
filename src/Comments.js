@@ -13,6 +13,7 @@ import { db, auth } from "./firebase-config";
 
 import leftTriangle from "./icons/left-triangle.png";
 import rightTriangle from "./icons/right-triangle.png";
+import downArrow from "./icons/down-arrow.png";
 
 export default function Comments(props) {
   const [userStory, setUserStory] = React.useState("");
@@ -152,21 +153,32 @@ export default function Comments(props) {
 
   return (
     <div>
-      <div className="comment-section">
-        <div className="post-box">
-          <textarea
-            className="textarea"
-            value={userStory}
-            onChange={readStory}
-          ></textarea>
-          <button
-            className="post-btn"
-            onClick={props.isAuth ? createPost : props.googleSignIn}
-          >
-            {props.isAuth ? "post" : "login to post"}
-          </button>
+      <div className="comment-section-container">
+        <div className="comment-section">
+          <h2 className="comment-section-title">
+            Practice using the words from the article
+          </h2>
+          <h4 className="comment-section-subtitle">
+            Leave a comment or tell your own story!
+          </h4>
+          <div className="post-box">
+            <textarea
+              className="textarea"
+              value={userStory}
+              onChange={readStory}
+            ></textarea>
+            <button
+              className="post-btn"
+              onClick={props.isAuth ? createPost : props.googleSignIn}
+            >
+              {props.isAuth ? "post" : "login to post"}
+            </button>
+          </div>
+          <div className="checklist-container">{checklistDisplay}</div>
+          <p className="more-stories">
+            <img src={downArrow}></img>Stories from other learners
+          </p>
         </div>
-        <div className="checklist-container">{checklistDisplay}</div>
       </div>
       <div className="posts-container">
         <h2 className="comments-title">Comments and Stories</h2>
