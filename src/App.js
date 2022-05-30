@@ -34,12 +34,15 @@ export default function App() {
         </div>
         <h1 className="nav-title">English Deck</h1>
         <div className="nav-right">
-          <h3 className="nav-link" onClick={googleSignIn}>
+          <h3
+            className="nav-link login"
+            onClick={!isAuth ? googleSignIn : googleSignOut}
+          >
             {!isAuth ? "Login" : "Log out"}
           </h3>
-          <h3 className="nav-link sign-up" onClick={googleSignOut}>
+          {/* <h3 className="nav-link sign-up" onClick={googleSignOut}>
             Sign Out
-          </h3>
+          </h3> */}
         </div>
       </nav>
       <Article isAuth={isAuth} googleSignIn={googleSignIn} />

@@ -15,7 +15,7 @@ export default function Comments(props) {
       usedWords: usedWords,
       author: { name: auth.currentUser.displayName, id: auth.currentUser.uid },
     });
-    console.log("post created");
+    setUserStory("");
   }
 
   // set state for checklist inside useEffect because it was creating an infinite loop
@@ -70,14 +70,16 @@ export default function Comments(props) {
     </div>
   ));
 
-  // post button disabled if not logged in
   return (
     <div className="comment-section">
       <div className="post-box">
-        <textarea className="textarea" onChange={readStory}></textarea>
+        <textarea
+          className="textarea"
+          value={userStory}
+          onChange={readStory}
+        ></textarea>
         <button
           className="post-btn"
-          // disabled={!props.isAuth}
           onClick={props.isAuth ? createPost : props.googleSignIn}
         >
           {props.isAuth ? "post" : "login to post"}

@@ -123,6 +123,8 @@ p {
 .nav-title {
   font-size: 38px;
   font-family: "Fraunces", serif;
+  justify-self: center;
+  align-self: center;
 }
 
 .nav {
@@ -145,9 +147,14 @@ p {
 .nav-left,
 .nav-right {
   gap: 30px;
+  width: 270px;
 }
 
-.sign-up {
+.nav-right {
+  justify-content: flex-end;
+}
+
+.login {
   border: 2px solid #023047;
   padding: 8px 16px;
 }
@@ -206,6 +213,7 @@ p {
 }
 
 .add-minus {
+  /* width: 48px; */
   display: grid;
   justify-self: start;
   margin-top: 25px;

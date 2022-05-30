@@ -1,6 +1,7 @@
 import React from "react";
 import { db } from "./firebase-config";
 import { collection, getDocs } from "firebase/firestore";
+
 import Flashcards from "./Flashcards";
 import Comments from "./Comments";
 import Quiz from "./Quiz";
@@ -61,8 +62,6 @@ export default function Article(props) {
         ...prevSavedcards,
         flashcards[groupNumber][count],
       ]);
-    } else {
-      console.log("duplicate found and eradicated");
     }
   }
 
@@ -79,7 +78,7 @@ export default function Article(props) {
     setQuizStoryDisp((prevQuizStoryDisp) => !prevQuizStoryDisp);
   }
 
-  // ----------- MANAGE WHICH COMMENT TO DISPLAY --------------------------//
+  // -------------------- MANAGE WHICH COMMENT TO DISPLAY --------------------------//
   const [currentComment, setCurrentComment] = React.useState(0);
 
   function nextComment() {
@@ -90,7 +89,7 @@ export default function Article(props) {
   function lastComment() {
     currentComment > 0 && setCurrentComment((prevComment) => prevComment - 1);
   }
-  // ------------------------------ ARTICLE BODY + FLASHCARDS -------------------
+  // ------------------------------ ARTICLE BODY + FLASHCARDS ------------------------
 
   // maps over number of flashcard groups (firebase collections)
   // passes in group and identifier of group as groupNumber so card can be id'd and saved
@@ -201,7 +200,11 @@ export default function Article(props) {
         {quizStoryDisp ? (
           <Quiz />
         ) : (
-          <Comments flashcards={flashcards} isAuth={props.isAuth} googleSignIn={props.googleSignIn}/>
+          <Comments
+            flashcards={flashcards}
+            isAuth={props.isAuth}
+            googleSignIn={props.googleSignIn}
+          />
         )}
       </div>
       <div className="posts-container">

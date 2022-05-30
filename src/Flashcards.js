@@ -1,7 +1,8 @@
 import React from "react";
 import add from "./icons/add.png";
-import minus from "./icons/minus.png";
-import flip from "./icons/flip.png";
+import addFilled from "./icons/add-filled.png";
+import minusSmall from "./icons/minus-small.png";
+import flipSmall from "./icons/flip-small.png";
 import leftArrow from "./icons/left-arrow.png";
 import rightArrow from "./icons/right-arrow.png";
 import dot from "./icons/dot.png";
@@ -11,6 +12,7 @@ export default function Flashcards(props) {
   const [count, setCount] = React.useState(0); // current card
   const [cardData, setCardData] = React.useState({}); // depends on flashcards(array of objects) and count(index)
   const [flipped, setFlipped] = React.useState(false);
+  const [isPressed, setIsPressed] = React.useState(false);
 
   React.useEffect(() => {
     props.flashcards.length > 0 && setCardData(props.flashcards[count]);
@@ -40,9 +42,11 @@ export default function Flashcards(props) {
     return <img src={count === i ? dot : emptyDot} key={card.title}></img>;
   });
 
-  // the check for groupnumber is because the saved cards has no groupnumber..
-  // if has props.deleteCard it means it is the saved cards deck and needs a diff class
-  // first classname removed: group-${props.groupNumber}
+  // controls save button display when clicked
+  function pressed() {
+    setIsPressed((prevIsPressed) => !prevIsPressed);
+  }
+
   return (
     <div
       className={`card-container  ${
@@ -53,14 +57,22 @@ export default function Flashcards(props) {
         <div className="top-icons">
           {typeof props.groupNumber === "number" ? (
             <img
-              src={add}
+              src={!isPressed ? add : addFilled}
               className="add-minus"
-              onClick={() => props.save(count, props.groupNumber)}
+              onClick={() => {
+                props.save(count, props.groupNumber);
+              }}
+              onMouseDown={pressed}
+              onMouseUp={pressed}
             ></img>
           ) : (
-            <img src={minus} className="add-minus" onClick={handleDelete}></img>
+            <img
+              src={minusSmall}
+              className="add-minus"
+              onClick={handleDelete}
+            ></img>
           )}
-          <img src={flip} className="flip" onClick={flipper}></img>
+          <img src={flipSmall} className="flip" onClick={flipper}></img>
         </div>
 
         {!flipped ? (
