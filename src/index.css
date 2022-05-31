@@ -79,9 +79,9 @@ p {
   display: grid;
   align-self: center;
   justify-self: center;
-  margin-left: 50px;
-  margin-right: 50px;
-  font-size: 26px;
+  margin-left: 35px;
+  margin-right: 35px;
+  font-size: 22px;
   line-height: 40px;
 }
 
@@ -407,6 +407,7 @@ p {
 }
 
 .comment-section-title {
+  margin-top: 20px;
   color: #023047;
   font-size: 28px;
   font-weight: 600;
@@ -466,6 +467,12 @@ p {
   grid-column: 2;
   grid-row: 4;
   justify-self: end;
+  display: flex;
+  align-content: center;
+  align-items: center;
+  font-weight: bold;
+  gap: 5px;
+  margin-right: -170px;
   /* align-self: center; */
 }
 
@@ -524,18 +531,34 @@ p {
 }
 
 .posted-story {
-  border: 4px solid #023047;
+  border: 3px solid #023047;
   border-radius: 1em;
   background-color: #fdf0c3;
+  height: 170px;
   width: 500px;
   padding: 40px;
   display: flex;
   flex-direction: column;
+  justify-content: start;
+  vertical-align: middle;
+  overflow: auto;
 }
 
 .post-author {
   align-self: flex-end;
   margin-top: 12px;
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #023047;
+  border-radius: 10px;
+}
+
+.post-body {
 }
 
 .triangle {

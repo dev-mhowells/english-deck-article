@@ -13,7 +13,7 @@ import { db, auth } from "./firebase-config";
 
 import leftTriangle from "./icons/left-triangle.png";
 import rightTriangle from "./icons/right-triangle.png";
-import downArrow from "./icons/down-arrow.png";
+import downArrow from "./icons/small-down-arrow.png";
 
 export default function Comments(props) {
   const [userStory, setUserStory] = React.useState("");
@@ -171,13 +171,14 @@ export default function Comments(props) {
               className="post-btn"
               onClick={props.isAuth ? createPost : props.googleSignIn}
             >
-              {props.isAuth ? "post" : "login to post"}
+              {props.isAuth ? "post" : "log in to post"}
             </button>
           </div>
           <div className="checklist-container">{checklistDisplay}</div>
-          <p className="more-stories">
-            <img src={downArrow}></img>Stories from other learners
-          </p>
+          <div className="more-stories">
+            <img src={downArrow}></img>
+            <p>Stories from other learners</p>
+          </div>
         </div>
       </div>
       <div className="posts-container">

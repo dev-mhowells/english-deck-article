@@ -66,6 +66,42 @@ export default function Article(props) {
 
   // ------------------------------ ARTICLE BODY + FLASHCARDS ------------------------
 
+  const articleTop = `Alex Honnold became famous for his free solo ascents of some of some
+  of the most challenging rock-climbing routes in the apple. His feats
+  have been immortalised in the critically acclaimed biographical
+  documentary Free Solo. The juxtaposition between the incredible
+  bravery of such feats and Honnold’s unassuming demeanour has captured
+  the imagination of people around the world. His free solo ascents have
+  been the culmination of over 20 years of climbing experience and
+  extraordinary preparation.`;
+
+  let allFlashTitles = [];
+  for (let i in flashcards) {
+    let flashTitles = flashcards[i].map((flashcard) => flashcard.title);
+    allFlashTitles = [...allFlashTitles, ...flashTitles];
+  }
+
+  function processText() {
+    const words = articleTop.split(" ").map((word) => {
+      // if (allFlashTitles.includes(word)) {
+      //   word = <b>{word}</b>;
+      // }
+    });
+    return words;
+  }
+  const words = articleTop.split(" ");
+  console.log(articleTop);
+  console.log(words);
+  const hiWords = words.map((word) => {
+    if (word === "apple.") {
+      word = "FOUND";
+    }
+    return word;
+  });
+
+  console.log("HI", hiWords);
+  console.log("processed text", processText());
+
   // maps over number of flashcard groups (firebase collections)
   // passes in group and identifier of group as groupNumber so card can be id'd and saved
   const flashymap = flashcards.map((group, i) =>
@@ -77,20 +113,31 @@ export default function Article(props) {
           flashcards={group}
           groupNumber={i}
         />
-        <p className="article-text">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Natoque
-          vulputate augue suspendisse iaculis eleifend. Hac a, cras semper
-          laoreet nec id. Pretium integer consectetur volutpat nulla adipiscing
-          dui. Scelerisque vel diam in vel sapien dictum sapien ac sed.
-        </p>
+        {
+          <p className="article-text">
+            Honnold notes the importance of his visualisation techniques in his
+            success. Again and again, he visualised himself performing the
+            movements of the climb and coupled this visualisation with repeated
+            climbs to ensure that he knew the route off by heart. One part of
+            the climb proved to be exceptionally challenging and required a
+            great deal of flexibility. For this one single movement, Honnold
+            stretched nightly for an entire year to make doubly sure that he had
+            the requisite flexibility. Honnold states that “doubt is the
+            precursor to fear”.
+          </p>
+        }
       </div>
     ) : (
       <div className="card-text-pair">
         <p className="article-text">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Natoque
-          vulputate augue suspendisse iaculis eleifend. Hac a, cras semper
-          laoreet nec id. Pretium integer consectetur volutpat nulla adipiscing
-          dui. Scelerisque vel diam in vel sapien dictum sapien ac sed.
+          Alex Honnold became famous for his free solo ascents of some of some
+          of the most challenging rock-climbing routes in the world. His feats
+          have been immortalised in the critically acclaimed biographical
+          documentary Free Solo. The juxtaposition between the incredible
+          bravery of such feats and Honnold’s unassuming demeanour has captured
+          the imagination of people around the world. His free solo ascents have
+          been the culmination of over 20 years of climbing experience and
+          extraordinary preparation.
         </p>
         <Flashcards
           savedCards={savedCards}
@@ -105,11 +152,11 @@ export default function Article(props) {
   // --------------------------------------------------------------------------
 
   // const postsDisplay = posts.map((post) => {
-  //   // let allFlashTitles = [];
-  //   // for (let i in flashcards) {
-  //   //   let flashTitles = flashcards[i].map((flashcard) => flashcard.title);
-  //   //   allFlashTitles = [...allFlashTitles, ...flashTitles];
-  //   // }
+  // let allFlashTitles = [];
+  // for (let i in flashcards) {
+  //   let flashTitles = flashcards[i].map((flashcard) => flashcard.title);
+  //   allFlashTitles = [...allFlashTitles, ...flashTitles];
+  // }
 
   //   // const words = post.post.split(" ");
   //   // words.forEach((word) => {
@@ -128,9 +175,11 @@ export default function Article(props) {
         </div>
         <div className="article-title-container">
           <p>
-            <b>Level:</b> Intermediate
+            <b>Level:</b> Advanced
           </p>
-          <h2 className="article-title">Lorem Ipsum Dolor sit Amet</h2>
+          <h2 className="article-title">
+            Alex Honnold: Preperation and Greatness
+          </h2>
           <p>
             <b>Author:</b> Michael Howells
           </p>
