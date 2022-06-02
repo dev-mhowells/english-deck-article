@@ -13,7 +13,7 @@ export default function Quiz() {
   const [quiz, setQuiz] = React.useState([]);
 
   // creates reference for particular database in firebase
-  const quizCollectionRef = collection(db, "quiz");
+  const quizCollectionRef = collection(db, "quiz1");
 
   // useEffect so data loads on page render
   // structure is particular to useEffect when using APIs

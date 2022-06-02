@@ -8,6 +8,9 @@ import {
   orderBy,
   serverTimestamp,
   query,
+  deleteDoc,
+  doc,
+  connectFirestoreEmulator,
 } from "firebase/firestore";
 import { db, auth } from "./firebase-config";
 
@@ -126,6 +129,12 @@ export default function Comments(props) {
     }
   }
 
+  async function deletePost(postId) {
+    console.log("click");
+    const postDoc = doc(db, "posts", postId);
+    await deleteDoc(postDoc);
+  }
+
   const checklistDisplay = checklist.map((title) => (
     <div className="check-word-pair">
       {usedWords.includes(title) && <img src={check} className="check"></img>}
@@ -139,9 +148,23 @@ export default function Comments(props) {
     </div>
   ));
 
+  console.log(auth.currentUser);
+
+  // Is auth not in state so button not appearing when logged in.
+
   const postsDisplay = posts.map((post) => {
     return (
       <div className="posted-story">
+        {props.isAuth && post.author.id === auth.currentUser && (
+          <button
+            onClick={() => {
+              deletePost(post.id);
+            }}
+          >
+            delete
+          </button>
+        )}
+
         <p className="post-body">{post.post}</p>
         <p className="post-author">
           <b>By: </b>
