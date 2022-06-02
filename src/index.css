@@ -76,9 +76,9 @@ p {
 }
 
 .article-text {
-  display: grid;
+  /* display: grid;
   align-self: center;
-  justify-self: center;
+  justify-self: center; */
   margin-left: 35px;
   margin-right: 35px;
   font-size: 22px;
@@ -272,6 +272,7 @@ p {
   font-size: 24px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
 }
 
 /* --------------------------------- QUIZ ------------------------ */

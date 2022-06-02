@@ -67,7 +67,7 @@ export default function Article(props) {
   // ------------------------------ ARTICLE BODY + FLASHCARDS ------------------------
 
   const articleTop = `Alex Honnold became famous for his free solo ascents of some of some
-  of the most challenging rock-climbing routes in the apple. His feats
+  of the most challenging rock-climbing routes in the apple His feats
   have been immortalised in the critically acclaimed biographical
   documentary Free Solo. The juxtaposition between the incredible
   bravery of such feats and Honnold’s unassuming demeanour has captured
@@ -81,26 +81,14 @@ export default function Article(props) {
     allFlashTitles = [...allFlashTitles, ...flashTitles];
   }
 
-  function processText() {
-    const words = articleTop.split(" ").map((word) => {
-      // if (allFlashTitles.includes(word)) {
-      //   word = <b>{word}</b>;
-      // }
-    });
-    return words;
-  }
   const words = articleTop.split(" ");
-  console.log(articleTop);
-  console.log(words);
-  const hiWords = words.map((word) => {
-    if (word === "apple.") {
-      word = "FOUND";
-    }
-    return word;
-  });
 
-  console.log("HI", hiWords);
-  console.log("processed text", processText());
+  const findApple = words.map((word) => {
+    if (allFlashTitles.includes(word)) {
+      word = <b className="inline">{`${word + " "}`}</b>;
+      return word;
+    } else return word + " ";
+  });
 
   // maps over number of flashcard groups (firebase collections)
   // passes in group and identifier of group as groupNumber so card can be id'd and saved
@@ -114,8 +102,8 @@ export default function Article(props) {
           groupNumber={i}
         />
         {
-          <p className="article-text">
-            Honnold notes the importance of his visualisation techniques in his
+          <p className="article-text test-flex">
+            {/* Honnold notes the importance of his visualisation techniques in his
             success. Again and again, he visualised himself performing the
             movements of the climb and coupled this visualisation with repeated
             climbs to ensure that he knew the route off by heart. One part of
@@ -123,7 +111,8 @@ export default function Article(props) {
             great deal of flexibility. For this one single movement, Honnold
             stretched nightly for an entire year to make doubly sure that he had
             the requisite flexibility. Honnold states that “doubt is the
-            precursor to fear”.
+            precursor to fear”. */}
+            {findApple}
           </p>
         }
       </div>
