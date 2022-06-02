@@ -11,14 +11,15 @@ import eye from "./images/eye.png";
 export default function Article(props) {
   //----------------------------FIREBASE-----------------------------
   const [flashcards, setFlashcards] = React.useState([]); // data from firebase
+  const [text, setText] = React.useState("");
 
   React.useEffect(() => {
     async function getFlashcards() {
-      const flashcardsCol = collection(db, "flashcards");
+      const flashcardsCol = collection(db, "feats-flash1");
       const flashcardsSnapshot = await getDocs(flashcardsCol);
       const flashcardsList = flashcardsSnapshot.docs.map((doc) => doc.data());
 
-      const flashcardsCol2 = collection(db, "flashcards4");
+      const flashcardsCol2 = collection(db, "feats-flash2");
       const flashcardsSnapshot2 = await getDocs(flashcardsCol2);
       const flashcardsList2 = flashcardsSnapshot2.docs.map((doc) => doc.data());
 
@@ -26,6 +27,18 @@ export default function Article(props) {
       setFlashcards([flashcardsList, flashcardsList2]);
     }
     getFlashcards();
+  }, []);
+
+  // returns array with object for each paragraph
+  React.useEffect(() => {
+    async function getText() {
+      const textCol = collection(db, "article1");
+      const textColSnapshot = await getDocs(textCol);
+      const text1 = textColSnapshot.docs.map((doc) => doc.data());
+
+      setText(text1);
+    }
+    getText();
   }, []);
 
   //-----------------------------------------------------------------------
@@ -66,29 +79,29 @@ export default function Article(props) {
 
   // ------------------------------ ARTICLE BODY + FLASHCARDS ------------------------
 
-  const articleTop = `Alex Honnold became famous for his free solo ascents of some of some
-  of the most challenging rock-climbing routes in the apple His feats
-  have been immortalised in the critically acclaimed biographical
-  documentary Free Solo. The juxtaposition between the incredible
-  bravery of such feats and Honnold’s unassuming demeanour has captured
-  the imagination of people around the world. His free solo ascents have
-  been the culmination of over 20 years of climbing experience and
-  extraordinary preparation.`;
-
+  // gets all titles of flashcards i.e. all vocab (repeated code)
   let allFlashTitles = [];
   for (let i in flashcards) {
     let flashTitles = flashcards[i].map((flashcard) => flashcard.title);
     allFlashTitles = [...allFlashTitles, ...flashTitles];
   }
 
-  const words = articleTop.split(" ");
+  // returns text with styled words if words are in flashcard titles
+  function highlightWords(text) {
+    if (text.text) {
+      console.log("text", text);
+      const words = text.text.split(" ");
 
-  const findApple = words.map((word) => {
-    if (allFlashTitles.includes(word)) {
-      word = <b className="inline">{`${word + " "}`}</b>;
-      return word;
-    } else return word + " ";
-  });
+      const highlightedText = words.map((word) => {
+        if (allFlashTitles.includes(word)) {
+          word = <b className="inline">{`${word + " "}`}</b>;
+          return word;
+        } else return word + " ";
+      });
+
+      return highlightedText;
+    }
+  }
 
   // maps over number of flashcard groups (firebase collections)
   // passes in group and identifier of group as groupNumber so card can be id'd and saved
@@ -101,33 +114,11 @@ export default function Article(props) {
           flashcards={group}
           groupNumber={i}
         />
-        {
-          <p className="article-text test-flex">
-            {/* Honnold notes the importance of his visualisation techniques in his
-            success. Again and again, he visualised himself performing the
-            movements of the climb and coupled this visualisation with repeated
-            climbs to ensure that he knew the route off by heart. One part of
-            the climb proved to be exceptionally challenging and required a
-            great deal of flexibility. For this one single movement, Honnold
-            stretched nightly for an entire year to make doubly sure that he had
-            the requisite flexibility. Honnold states that “doubt is the
-            precursor to fear”. */}
-            {findApple}
-          </p>
-        }
+        {<p className="article-text test-flex">{highlightWords(text[1])}</p>}
       </div>
     ) : (
       <div className="card-text-pair">
-        <p className="article-text">
-          Alex Honnold became famous for his free solo ascents of some of some
-          of the most challenging rock-climbing routes in the world. His feats
-          have been immortalised in the critically acclaimed biographical
-          documentary Free Solo. The juxtaposition between the incredible
-          bravery of such feats and Honnold’s unassuming demeanour has captured
-          the imagination of people around the world. His free solo ascents have
-          been the culmination of over 20 years of climbing experience and
-          extraordinary preparation.
-        </p>
+        <p className="article-text">{highlightWords(text[0])}</p>
         <Flashcards
           savedCards={savedCards}
           save={save}
@@ -139,20 +130,6 @@ export default function Article(props) {
   );
 
   // --------------------------------------------------------------------------
-
-  // const postsDisplay = posts.map((post) => {
-  // let allFlashTitles = [];
-  // for (let i in flashcards) {
-  //   let flashTitles = flashcards[i].map((flashcard) => flashcard.title);
-  //   allFlashTitles = [...allFlashTitles, ...flashTitles];
-  // }
-
-  //   // const words = post.post.split(" ");
-  //   // words.forEach((word) => {
-  //   //   if (allFlashTitles.includes(word)) {
-  //   //     word = "FOUND!!!!";
-  //   //   }
-  //   // });
 
   return (
     <div className="article-container">
