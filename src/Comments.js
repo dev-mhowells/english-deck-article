@@ -71,6 +71,7 @@ export default function Comments(props) {
       author: { name: auth.currentUser.displayName, id: auth.currentUser.uid },
     });
     setUserStory("");
+    setUsedWords([]);
     lastComment();
   }
 
@@ -135,6 +136,15 @@ export default function Comments(props) {
     await deleteDoc(postDoc);
   }
 
+  // sets text in textarea (takes post.post), deletes post
+  // sets used words to the array saved in the post object of words used
+  // state updates used words checklist
+  function edit(text, postId, postUsedWords) {
+    setUserStory(text);
+    deletePost(postId);
+    setUsedWords(postUsedWords);
+  }
+
   const checklistDisplay = checklist.map((title) => (
     <div className="check-word-pair">
       {usedWords.includes(title) && <img src={check} className="check"></img>}
@@ -148,14 +158,10 @@ export default function Comments(props) {
     </div>
   ));
 
-  console.log(auth.currentUser);
-
-  // Is auth not in state so button not appearing when logged in.
-
   const postsDisplay = posts.map((post) => {
     return (
       <div className="posted-story">
-        {props.isAuth && post.author.id === auth.currentUser && (
+        {props.isAuth && post.author.id === auth.currentUser.uid && (
           <button
             onClick={() => {
               deletePost(post.id);
@@ -164,6 +170,9 @@ export default function Comments(props) {
             delete
           </button>
         )}
+        <button onClick={() => edit(post.post, post.id, post.usedWords)}>
+          edit
+        </button>
 
         <p className="post-body">{post.post}</p>
         <p className="post-author">
