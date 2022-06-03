@@ -532,22 +532,39 @@ p {
 }
 
 .posted-story {
-  border: 3px solid #023047;
+  /* border: 3px solid #023047; */
   border-radius: 1em;
   background-color: #fdf0c3;
-  height: 170px;
+  height: 200px;
   width: 500px;
   padding: 40px;
-  display: flex;
-  flex-direction: column;
+  /* display: flex; */
+  /* flex-direction: column;
   justify-content: start;
-  vertical-align: middle;
+  vertical-align: middle; */
+
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 0.1fr 0.8fr 0.2fr;
   overflow: auto;
+  gap: 10px;
+}
+
+.post-icons {
+  width: 30px;
+  height: 30px;
+  align-self: flex-start;
+  cursor: pointer;
+}
+
+.edit-btn {
+  justify-self: flex-end;
 }
 
 .post-author {
-  align-self: flex-end;
-  margin-top: 12px;
+  grid-column: 2;
+  justify-self: flex-end;
+  /* margin-top: 12px; */
 }
 
 ::-webkit-scrollbar {
@@ -560,6 +577,7 @@ p {
 }
 
 .post-body {
+  grid-column: 1 / -1;
 }
 
 .triangle {

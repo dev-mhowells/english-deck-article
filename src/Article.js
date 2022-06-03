@@ -182,6 +182,7 @@ export default function Article(props) {
           <Comments
             flashcards={flashcards}
             isAuth={props.isAuth}
+            userIn={props.userIn}
             googleSignIn={props.googleSignIn}
             // posts={posts}
           />

@@ -14,9 +14,11 @@ import {
 } from "firebase/firestore";
 import { db, auth } from "./firebase-config";
 
-import leftTriangle from "./icons/left-triangle.png";
-import rightTriangle from "./icons/right-triangle.png";
+import leftTriangle from "./icons/left-triangle-small.png";
+import rightTriangle from "./icons/right-triangle-small.png";
 import downArrow from "./icons/small-down-arrow.png";
+import binBtn from "./icons/bin.png";
+import editBtn from "./icons/edit.png";
 
 export default function Comments(props) {
   const [userStory, setUserStory] = React.useState("");
@@ -57,6 +59,8 @@ export default function Comments(props) {
     currentComment > 0 && setCurrentComment((prevComment) => prevComment - 1);
   }
 
+  console.log("CURRENT", currentComment);
+
   //------
 
   const postsCollectionRef = collection(db, "posts");
@@ -86,7 +90,6 @@ export default function Comments(props) {
         ...doc.data(),
         id: doc.id,
       }));
-      console.log("again", allPosts);
       setPosts(allPosts);
     });
   }, []);
@@ -131,7 +134,6 @@ export default function Comments(props) {
   }
 
   async function deletePost(postId) {
-    console.log("click");
     const postDoc = doc(db, "posts", postId);
     await deleteDoc(postDoc);
   }
@@ -161,18 +163,22 @@ export default function Comments(props) {
   const postsDisplay = posts.map((post) => {
     return (
       <div className="posted-story">
-        {props.isAuth && post.author.id === auth.currentUser.uid && (
-          <button
+        {props.userIn && post.author.id === auth.currentUser.uid && (
+          <img
+            className="post-icons"
+            src={binBtn}
             onClick={() => {
               deletePost(post.id);
             }}
-          >
-            delete
-          </button>
+          ></img>
         )}
-        <button onClick={() => edit(post.post, post.id, post.usedWords)}>
-          edit
-        </button>
+        {props.userIn && post.author.id === auth.currentUser.uid && (
+          <img
+            className="post-icons edit-btn"
+            src={editBtn}
+            onClick={() => edit(post.post, post.id, post.usedWords)}
+          ></img>
+        )}
 
         <p className="post-body">{post.post}</p>
         <p className="post-author">
@@ -201,9 +207,9 @@ export default function Comments(props) {
             ></textarea>
             <button
               className="post-btn"
-              onClick={props.isAuth ? createPost : props.googleSignIn}
+              onClick={props.userIn ? createPost : props.googleSignIn}
             >
-              {props.isAuth ? "post" : "log in to post"}
+              {props.userIn ? "post" : "log in to post"}
             </button>
           </div>
           <div className="checklist-container">{checklistDisplay}</div>
