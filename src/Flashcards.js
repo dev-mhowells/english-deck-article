@@ -12,7 +12,6 @@ export default function Flashcards(props) {
   const [count, setCount] = React.useState(0); // current card
   const [cardData, setCardData] = React.useState({}); // depends on flashcards(array of objects) and count(index)
   const [flipped, setFlipped] = React.useState(false);
-  const [isPressed, setIsPressed] = React.useState(false);
 
   React.useEffect(() => {
     props.flashcards.length > 0 && setCardData(props.flashcards[count]);
@@ -42,11 +41,6 @@ export default function Flashcards(props) {
     return <img src={count === i ? dot : emptyDot} key={card.title}></img>;
   });
 
-  // controls save button display when clicked
-  function pressed() {
-    setIsPressed((prevIsPressed) => !prevIsPressed);
-  }
-
   return (
     <div
       className={`card-container  ${
@@ -57,18 +51,16 @@ export default function Flashcards(props) {
         <div className="top-icons">
           {typeof props.groupNumber === "number" ? (
             <img
-              src={!isPressed ? add : addFilled}
+              src={add}
               className="add-minus"
               onClick={() => {
                 props.save(count, props.groupNumber);
               }}
-              onMouseDown={pressed}
-              onMouseUp={pressed}
             ></img>
           ) : (
             <img
               src={minusSmall}
-              className="add-minus"
+              className="minus"
               onClick={handleDelete}
             ></img>
           )}
@@ -82,7 +74,7 @@ export default function Flashcards(props) {
             <h3 className="definition">{cardData.definition}</h3>
             <div className="example">
               <p>Example:</p>
-              <p>{cardData.example}</p>
+              <i>{cardData.example}</i>
             </div>
           </div>
         )}

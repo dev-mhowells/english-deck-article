@@ -85,6 +85,10 @@ p {
   line-height: 40px;
 }
 
+.highlighted-word {
+  color: #023047;
+}
+
 .quiz-comment-box {
   width: 100%;
 }
@@ -213,7 +217,18 @@ p {
 }
 
 .add-minus {
-  /* width: 48px; */
+  display: grid;
+  justify-self: start;
+  margin-top: 25px;
+  margin-left: 25px;
+  cursor: pointer;
+}
+
+.add-minus:active {
+  background-image: url("./icons/add-filled.png");
+}
+
+.minus {
   display: grid;
   justify-self: start;
   margin-top: 25px;
@@ -326,6 +341,7 @@ p {
 }
 
 .quiz-title-container {
+  height: 35px;
   width: 700px;
   color: rgba(0, 0, 0, 0.5);
   font-weight: 600;
@@ -398,7 +414,7 @@ p {
 }
 
 .comment-section {
-  width: 800px;
+  width: 900px;
   height: 550px;
   display: grid;
   grid-template-columns: 0.4fr 0.6fr;
@@ -459,6 +475,7 @@ p {
 }
 
 .checklist-container {
+  /* margin-right: 50px; */
   grid-column: 1;
   grid-row: 3;
   align-self: flex-start;

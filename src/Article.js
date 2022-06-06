@@ -89,16 +89,14 @@ export default function Article(props) {
   // returns text with styled words if words are in flashcard titles
   function highlightWords(text) {
     if (text.text) {
-      console.log("text", text);
       const words = text.text.split(" ");
 
       const highlightedText = words.map((word) => {
         if (allFlashTitles.includes(word)) {
-          word = <b className="inline">{`${word + " "}`}</b>;
+          word = <b className="highlighted-word">{`${word + " "}`}</b>;
           return word;
         } else return word + " ";
       });
-
       return highlightedText;
     }
   }
@@ -112,6 +110,7 @@ export default function Article(props) {
           savedCards={savedCards}
           save={save}
           flashcards={group}
+          setFlashcards={setFlashcards}
           groupNumber={i}
         />
         {<p className="article-text test-flex">{highlightWords(text[1])}</p>}
@@ -154,7 +153,7 @@ export default function Article(props) {
       {flashymap}
       {savedCards[0] && (
         <div>
-          <h2 className="saved-cards-title">Your Saved Cards</h2>
+          <h2 className="saved-cards-title">Your Review Deck</h2>
           <Flashcards
             savedCards={savedCards}
             save={save}
@@ -191,7 +190,7 @@ export default function Article(props) {
       <footer>
         <h4>Home</h4>
         <h4>Contact</h4>
-        <h4>{!props.isAuth ? "Login" : "Log out"}</h4>
+        <h4>{!props.userIn ? "Login" : "Log out"}</h4>
       </footer>
     </div>
   );
