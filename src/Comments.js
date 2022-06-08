@@ -3,14 +3,12 @@ import check from "./icons/check.png";
 import {
   addDoc,
   collection,
-  getDocs,
   onSnapshot,
   orderBy,
   serverTimestamp,
   query,
   deleteDoc,
   doc,
-  connectFirestoreEmulator,
 } from "firebase/firestore";
 import { db, auth } from "./firebase-config";
 
@@ -21,35 +19,13 @@ import binBtn from "./icons/bin.png";
 import editBtn from "./icons/edit.png";
 
 export default function Comments(props) {
-  const [userStory, setUserStory] = React.useState("");
-  const [checklist, setChecklist] = React.useState([]);
-  const [usedWords, setUsedWords] = React.useState([]);
-  const [posts, setPosts] = React.useState([]);
+  const [userStory, setUserStory] = React.useState(""); // user input on page
+  const [checklist, setChecklist] = React.useState([]); // list of target words from article
+  const [usedWords, setUsedWords] = React.useState([]); // real time updated list of words user has written and match checklist
+  const [posts, setPosts] = React.useState([]); // user submitted posts stored in Firebase
+  const [currentComment, setCurrentComment] = React.useState(0); // manages displayed comment
 
-  // let now = new Date();
-  // let date = now.getFullYear() + "" + now.getMonth() + "" + now.getDate();
-  // let time = now.getHours() + "" + now.getMinutes() + "" + now.getSeconds();
-  // let dateTime = date + "" + time;
-  // console.log(dateTime);
-
-  // React.useEffect(() => {
-  //   async function getPosts() {
-  //     const postsCol = collection(db, "posts");
-  //     const postsSnapshot = await getDocs(postsCol);
-  //     console.log("posties", postsSnapshot.docs);
-  //     const allPosts = postsSnapshot.docs.map((doc) => ({
-  //       ...doc.data(),
-  //       id: doc.id,
-  //     }));
-
-  //     // setPosts(allPosts);
-  //   }
-  //   getPosts();
-  // }, []);
-
-  // -------------------- MANAGE WHICH COMMENT TO DISPLAY --------------------------//
-  const [currentComment, setCurrentComment] = React.useState(0);
-
+  // manages currently displayed comment
   function nextComment() {
     currentComment < postsDisplay.length - 1 &&
       setCurrentComment((prevComment) => prevComment + 1);
@@ -59,10 +35,7 @@ export default function Comments(props) {
     currentComment > 0 && setCurrentComment((prevComment) => prevComment - 1);
   }
 
-  console.log("CURRENT", currentComment);
-
-  //------
-
+  // updates Firebase with newly created post
   const postsCollectionRef = collection(db, "posts");
 
   const q = query(postsCollectionRef, orderBy("createdAt", "desc"));
@@ -80,9 +53,7 @@ export default function Comments(props) {
   }
 
   // subscription / real time snapshot update of data - use onSnapshot instead of getDocs
-  // fires on initial render, does not return promise
-  // inside useEffect to prevent infinite rendering.. not sure why happens
-  // also, why update in real time if in useEffect?
+  // onSnapshot fires on initial render, does not return promise
 
   React.useEffect(() => {
     onSnapshot(q, (snapshot) => {
@@ -95,9 +66,8 @@ export default function Comments(props) {
   }, []);
 
   // set state for checklist inside useEffect because it was creating an infinite loop
-  // can't work out why right now, but this fixes it...
   // also needs to run more than once or else list does not load on initial page-load
-  // I think because flashcards would be an empty array at that time
+  // This is because flashcards would be an empty array at that time
   // therefore runs again on flashcard state change
   React.useEffect(() => {
     let allFlashyTitles = [];
@@ -109,10 +79,9 @@ export default function Comments(props) {
     }
   }, [props.flashcards]);
 
-  // reads input on keystroke, checks if checklist word is written, if so adds to usedWords
+  // reads input of text area on keystroke, checks if checklist word is written, if so adds to usedWords
   // also checks usedWords, if item in usedWords is no longer in input, removes
-  // from usedWords
-  // BUG - ONE KEYSTROKE DELAY HERE!!!!!!!!!!!!!!!!!!!!!!
+  // from usedWords. One keystroke delay
   function readStory(e) {
     setUserStory(e.target.value);
 
@@ -133,6 +102,7 @@ export default function Comments(props) {
     }
   }
 
+  // deletes post from Firebase
   async function deletePost(postId) {
     const postDoc = doc(db, "posts", postId);
     await deleteDoc(postDoc);

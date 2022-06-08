@@ -9,10 +9,11 @@ import dot from "./icons/dot.png";
 import emptyDot from "./icons/empty-dot.png";
 
 export default function Flashcards(props) {
-  const [count, setCount] = React.useState(0); // current card
-  const [cardData, setCardData] = React.useState({}); // depends on flashcards(array of objects) and count(index)
-  const [flipped, setFlipped] = React.useState(false);
+  const [count, setCount] = React.useState(0); // current card number
+  const [cardData, setCardData] = React.useState({}); // current card display
+  const [flipped, setFlipped] = React.useState(false); // display front or back of card
 
+  // depends on flashcards(array of objects) and count(index)
   React.useEffect(() => {
     props.flashcards.length > 0 && setCardData(props.flashcards[count]);
   }, [count, props.flashcards]);
@@ -32,6 +33,7 @@ export default function Flashcards(props) {
     setFlipped((flipped) => !flipped);
   }
 
+  // deletes card
   function handleDelete() {
     props.deleteCard(count);
     cardDown();

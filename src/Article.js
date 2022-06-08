@@ -1,6 +1,7 @@
 import React from "react";
 import { db } from "./firebase-config";
 import { collection, getDocs } from "firebase/firestore";
+import { v4 as uuidv4 } from "uuid";
 
 import Flashcards from "./Flashcards";
 import Comments from "./Comments";
@@ -43,7 +44,8 @@ export default function Article(props) {
 
   //-----------------------------------------------------------------------
 
-  const [savedCards, setSavedCards] = React.useState([]);
+  const [savedCards, setSavedCards] = React.useState([]); // tracks cards saved by user
+  const [quizStoryDisp, setQuizStoryDisp] = React.useState(true); // tracks display of either quiz or comments section
 
   // count is passed into the function in Flashcard.js to ensure current card is saved!
   // groupNumber is passed in to ensure the correct flashcard group
@@ -71,8 +73,7 @@ export default function Article(props) {
     );
   }
 
-  const [quizStoryDisp, setQuizStoryDisp] = React.useState(true);
-
+  // manages display of quiz and comment section
   function toggleQuizStory() {
     setQuizStoryDisp((prevQuizStoryDisp) => !prevQuizStoryDisp);
   }
@@ -112,6 +113,7 @@ export default function Article(props) {
           flashcards={group}
           setFlashcards={setFlashcards}
           groupNumber={i}
+          key={uuidv4()}
         />
         {<p className="article-text test-flex">{highlightWords(text[1])}</p>}
       </div>
@@ -123,6 +125,7 @@ export default function Article(props) {
           save={save}
           flashcards={group}
           groupNumber={i}
+          key={uuidv4()}
         />
       </div>
     )
@@ -183,7 +186,6 @@ export default function Article(props) {
             isAuth={props.isAuth}
             userIn={props.userIn}
             googleSignIn={props.googleSignIn}
-            // posts={posts}
           />
         )}
       </div>

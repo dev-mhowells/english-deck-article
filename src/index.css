@@ -61,7 +61,6 @@ p {
 }
 
 .article-container {
-  /* width: 90%; */
   display: grid;
   grid-template-columns: 1;
   align-items: center;
@@ -76,9 +75,6 @@ p {
 }
 
 .article-text {
-  /* display: grid;
-  align-self: center;
-  justify-self: center; */
   margin-left: 35px;
   margin-right: 35px;
   font-size: 22px;
@@ -448,16 +444,6 @@ p {
   justify-content: center;
 }
 
-.post-btn {
-  /* grid-column: 1;
-  grid-row: 2;
-  justify-self: start; */
-}
-
-/* .post-btn:disabled {
-  opacity: 0.5;
-} */
-
 .textarea {
   height: 300px;
   width: 450px;
@@ -475,7 +461,6 @@ p {
 }
 
 .checklist-container {
-  /* margin-right: 50px; */
   grid-column: 1;
   grid-row: 3;
   align-self: flex-start;
@@ -491,7 +476,6 @@ p {
   font-weight: bold;
   gap: 5px;
   margin-right: -170px;
-  /* align-self: center; */
 }
 
 .check-word-pair {
@@ -549,16 +533,11 @@ p {
 }
 
 .posted-story {
-  /* border: 3px solid #023047; */
   border-radius: 1em;
   background-color: #fdf0c3;
   height: 200px;
   width: 500px;
   padding: 40px;
-  /* display: flex; */
-  /* flex-direction: column;
-  justify-content: start;
-  vertical-align: middle; */
 
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -581,7 +560,6 @@ p {
 .post-author {
   grid-column: 2;
   justify-self: flex-end;
-  /* margin-top: 12px; */
 }
 
 ::-webkit-scrollbar {

@@ -1,32 +1,22 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { db } from "./firebase-config";
-import {
-  collection,
-  connectFirestoreEmulator,
-  getDocs,
-} from "firebase/firestore";
+import { collection, getDocs } from "firebase/firestore";
 import QuestionAns from "./QuestionAns";
+import { v4 as uuidv4 } from "uuid";
 
 export default function Quiz() {
   // -------------------------- FIREBASE STUFF ---------------------------
 
   const [quiz, setQuiz] = React.useState([]);
 
-  // creates reference for particular database in firebase
   const quizCollectionRef = collection(db, "quiz1");
 
-  // useEffect so data loads on page render
-  // structure is particular to useEffect when using APIs
   React.useEffect(() => {
     const getData = async () => {
-      // getdocs is a firebase function
       const data = await getDocs(quizCollectionRef);
-      // data straight from firebase is very cluttered:
-      //   console.log(data);
-      // notation here is confusing. .data() is firebase function
-      // below returns data from firebase database and the unique ID
+      // data() is firebase function. Return data and the unique ID
       setQuiz(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-      //   RECENTLY ADDED: RANDOMISES ANSWERS FOR EACH OBJECT
+      // randomize answer order
       setQuiz((prevQuiz) =>
         prevQuiz.map((quizObj) => ({
           ...quizObj,
@@ -38,9 +28,9 @@ export default function Quiz() {
   }, []);
   //-----------------------------------------------------------------------
 
-  // questionSet is generated when QuestionsAns is created, serves as an ID for each QuestionAns component
+  // questionSet is the index of quiz.map, and serves as an ID for each QuestionAns component
   // i serves as an ID for each object in quiz array
-  // selected is only modified onClick if QuestionAns ID matches the object ID
+  // selected is only modified onClick if QuestionAns component ID matches the object ID
   // necessary because otherwise onClick will modify select for all objects in quiz array at once
   // if 'choseCorrectly' is a property of any quiz object, it means check answers has been clicked
   // therefore should not be able to select any more answers until quiz is reset
@@ -88,6 +78,7 @@ export default function Quiz() {
       answers={qa.answers}
       selectA={selectA}
       questionSet={questionSet}
+      key={uuidv4()}
     />
   ));
 

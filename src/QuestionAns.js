@@ -1,8 +1,10 @@
+import { v4 as uuidv4 } from "uuid";
+
 export default function QuestionAns(props) {
   const allAnswers = props.answers.map((answer, answerNum) => {
     return (
       <button
-        // if the value of selected matches the value of current answer, change bckrd colour
+        // if the value of selected matches the value of current answer, change background colour
         className={`answer ${
           props.qaObject.selected === props.answers[answerNum] && "selected"
         } ${
@@ -24,6 +26,7 @@ export default function QuestionAns(props) {
         }
         `}
         onClick={(e) => props.selectA(e, props.questionSet)}
+        key={uuidv4()}
       >
         {props.answers[answerNum]}
       </button>
