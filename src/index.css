@@ -593,3 +593,8 @@ footer > * {
   color: #011f2e;
   font-weight: 600;
 }
+
+.disabled {
+  opacity: 0.5;
+  cursor: auto;
+}

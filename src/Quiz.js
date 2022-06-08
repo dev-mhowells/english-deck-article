@@ -88,12 +88,17 @@ export default function Quiz() {
         <h2 className="quiz-title">How much did you understand?</h2>
         {quiz[0] && quiz[0].hasOwnProperty("choseCorrectly") && (
           <button className="again-btn" onClick={resetQuiz}>
-            try again
+            reset
           </button>
         )}
       </div>
       <div className="quiz-container">{quizDisplay}</div>
-      <button className="check-btn" onClick={checkAnswers}>
+      <button
+        className={`check-btn ${
+          quiz[0] && quiz[0].hasOwnProperty("choseCorrectly") && "disabled"
+        }`}
+        onClick={checkAnswers}
+      >
         check
       </button>
     </div>

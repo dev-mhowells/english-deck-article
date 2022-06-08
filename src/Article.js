@@ -46,7 +46,19 @@ export default function Article(props) {
 
   const [savedCards, setSavedCards] = React.useState([]); // tracks cards saved by user
   const [quizStoryDisp, setQuizStoryDisp] = React.useState(true); // tracks display of either quiz or comments section
+  // const [showSaved, setShowsaved] = React.useState(false);
 
+  // function showIfSaved(count, groupNumber) {
+  //   for (let savedCard of savedCards) {
+  //     if (flashcards[groupNumber][count].title === savedCard.title) {
+  //       setShowsaved(true);
+  //       console.log(count, groupNumber, "black");
+  //     } else {
+  //       setShowsaved(false);
+  //       console.log(count, groupNumber, "white");
+  //     }
+  //   }
+  // }
   // count is passed into the function in Flashcard.js to ensure current card is saved!
   // groupNumber is passed in to ensure the correct flashcard group
   function save(count, groupNumber) {
@@ -111,9 +123,10 @@ export default function Article(props) {
           savedCards={savedCards}
           save={save}
           flashcards={group}
-          setFlashcards={setFlashcards}
+          // setFlashcards={setFlashcards}
           groupNumber={i}
-          key={uuidv4()}
+          // showSaved={showSaved}
+          // showIfSaved={showIfSaved}
         />
         {<p className="article-text test-flex">{highlightWords(text[1])}</p>}
       </div>
@@ -125,7 +138,8 @@ export default function Article(props) {
           save={save}
           flashcards={group}
           groupNumber={i}
-          key={uuidv4()}
+          // showSaved={showSaved}
+          // showIfSaved={showIfSaved}
         />
       </div>
     )
@@ -158,7 +172,7 @@ export default function Article(props) {
         <div>
           <h2 className="saved-cards-title">Your Review Deck</h2>
           <Flashcards
-            savedCards={savedCards}
+            // savedCards={savedCards}
             save={save}
             flashcards={savedCards}
             deleteCard={deleteCard}

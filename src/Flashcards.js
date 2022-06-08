@@ -18,6 +18,17 @@ export default function Flashcards(props) {
     props.flashcards.length > 0 && setCardData(props.flashcards[count]);
   }, [count, props.flashcards]);
 
+  function test() {
+    if (props.savedCards) {
+      for (let savedCard of props.savedCards) {
+        if (cardData.title === savedCard.title) {
+          return addFilled;
+        }
+      }
+    }
+    return add;
+  }
+
   // modifies count up
   function cardUp() {
     count < props.flashcards.length - 1 &&
@@ -53,10 +64,11 @@ export default function Flashcards(props) {
         <div className="top-icons">
           {typeof props.groupNumber === "number" ? (
             <img
-              src={add}
+              src={test()}
               className="add-minus"
               onClick={() => {
                 props.save(count, props.groupNumber);
+                test();
               }}
             ></img>
           ) : (
