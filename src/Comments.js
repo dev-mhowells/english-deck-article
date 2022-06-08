@@ -80,7 +80,7 @@ export default function Comments(props) {
   }, [props.flashcards]);
 
   // reads input of text area on keystroke, checks if checklist word is written, if so adds to usedWords
-  // also checks usedWords, if item in usedWords is no longer in input, removes
+  // also checks usedWords, if item in usedWords is no longer in textarea, removes
   // from usedWords. One keystroke delay
   function readStory(e) {
     setUserStory(e.target.value);

@@ -1,10 +1,6 @@
 import React from "react";
 import Article from "./Article";
-import {
-  signInWithPopup,
-  signOut,
-  onAuthStateChanged,
-} from "firebase/auth";
+import { signInWithPopup, signOut, onAuthStateChanged } from "firebase/auth";
 import { auth, provider } from "./firebase-config";
 
 export default function App() {
@@ -37,21 +33,31 @@ export default function App() {
     <div className="whole-page">
       <nav className="nav">
         <div className="nav-left">
-          <h3 className="nav-link">Home</h3>
-          <h3 className="nav-link">About</h3>
-          <h3 className="nav-link">Contact</h3>
+          <p className="nav-link">Home</p>
+          <p className="nav-link">About</p>
+          <p className="nav-link">Contact</p>
         </div>
         <h1 className="nav-title">English Deck</h1>
         <div className="nav-right">
-          <h3
+          <p
             className="nav-link login"
             onClick={!userIn ? googleSignIn : googleSignOut}
           >
             {!userIn ? "Login" : "Log out"}
-          </h3>
+          </p>
         </div>
       </nav>
       <Article isAuth={isAuth} userIn={userIn} googleSignIn={googleSignIn} />
+      <footer>
+        <h4>Home</h4>
+        <h4>Contact</h4>
+        <h4
+          className="footer-login"
+          onClick={!userIn ? googleSignIn : googleSignOut}
+        >
+          {!userIn ? "Login" : "Log out"}
+        </h4>
+      </footer>
     </div>
   );
 }

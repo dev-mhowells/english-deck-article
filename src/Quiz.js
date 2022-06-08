@@ -85,7 +85,7 @@ export default function Quiz() {
   return (
     <div className="app-container">
       <div className="quiz-title-container">
-        <h2 className="quiz-title">How much did you understand?</h2>
+        <h4 className="quiz-title">How much did you understand?</h4>
         {quiz[0] && quiz[0].hasOwnProperty("choseCorrectly") && (
           <button className="again-btn" onClick={resetQuiz}>
             reset

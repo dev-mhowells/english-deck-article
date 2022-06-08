@@ -85,7 +85,7 @@ export default function Flashcards(props) {
           <h2 className="title">{cardData.title}</h2>
         ) : (
           <div className="card-back">
-            <h3 className="definition">{cardData.definition}</h3>
+            <h4 className="definition">{cardData.definition}</h4>
             <div className="example">
               <p>Example:</p>
               <i>{cardData.example}</i>

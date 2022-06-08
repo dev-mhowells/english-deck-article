@@ -156,13 +156,13 @@ export default function Article(props) {
           </div>
         </div>
         <div className="article-title-container">
-          <p>
+          <p className="author-level">
             <b>Level:</b> Advanced
           </p>
           <h2 className="article-title">
             Alex Honnold: Preperation and Greatness
           </h2>
-          <p>
+          <p className="author-level">
             <b>Author:</b> Michael Howells
           </p>
         </div>
@@ -170,7 +170,7 @@ export default function Article(props) {
       {flashymap}
       {savedCards[0] && (
         <div>
-          <h2 className="saved-cards-title">Your Review Deck</h2>
+          <h3 className="saved-cards-title">Your Review Deck</h3>
           <Flashcards
             // savedCards={savedCards}
             save={save}
@@ -203,11 +203,6 @@ export default function Article(props) {
           />
         )}
       </div>
-      <footer>
-        <h4>Home</h4>
-        <h4>Contact</h4>
-        <h4>{!props.userIn ? "Login" : "Log out"}</h4>
-      </footer>
     </div>
   );
 }
