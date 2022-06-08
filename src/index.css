@@ -1,8 +1,6 @@
 body {
   margin: 0;
   height: 100vh;
-
-  font-family: "Commissioner", sans-serif;
   font-family: "Fraunces", serif;
 }
 
@@ -578,6 +576,8 @@ p {
 .triangle {
   cursor: pointer;
 }
+
+/* --------------- footer ------------------- */
 
 footer {
   display: flex;
