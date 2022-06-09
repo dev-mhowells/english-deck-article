@@ -37,7 +37,10 @@ export default function App() {
           <p className="nav-link">About</p>
           <p className="nav-link">Contact</p>
         </div>
-        <h1 className="nav-title">English Deck</h1>
+        <div className="nav-title">
+          <h1 className="nav-title">English Deck</h1>
+        </div>
+
         <div className="nav-right">
           <p
             className="nav-link login"
@@ -49,14 +52,14 @@ export default function App() {
       </nav>
       <Article isAuth={isAuth} userIn={userIn} googleSignIn={googleSignIn} />
       <footer>
-        <h4>Home</h4>
-        <h4>Contact</h4>
-        <h4
+        <p>Home</p>
+        <p>Contact</p>
+        <p
           className="footer-login"
           onClick={!userIn ? googleSignIn : googleSignOut}
         >
           {!userIn ? "Login" : "Log out"}
-        </h4>
+        </p>
       </footer>
     </div>
   );

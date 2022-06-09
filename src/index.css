@@ -2,6 +2,7 @@ body {
   margin: 0;
   /* height: 100vh; */
   font-family: "Fraunces", serif;
+  overflow-x: hidden;
 }
 html {
   overflow-x: hidden;
@@ -28,7 +29,20 @@ h3 {
 }
 
 h4 {
-  font-size: 24px;
+  font-size: 28px;
+}
+
+@media all and (max-width: 600px) {
+  h1 {
+    font-size: 22px;
+  }
+  p {
+    font-size: 16px;
+  }
+
+  h4 {
+    font-size: 22px;
+  }
 }
 
 /* ----------------------------- PAGE ---------------------------- */
@@ -103,6 +117,36 @@ h4 {
   justify-self: center;
 }
 
+.highlighted-word {
+  color: #023047;
+}
+
+.quiz-comment-box {
+  width: 100%;
+}
+
+.toggle-story-btn,
+.toggle-quiz-btn {
+  font-family: "Fraunces", serif;
+  color: #023047;
+  font-size: 28px;
+  font-weight: 600;
+  width: 50%;
+  border-radius: 33px 33px 0px 0px;
+  border: none;
+  background: #fbf5e0;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-top: 10px;
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.selected-btn {
+  background: #fdf0c3;
+  opacity: 1;
+}
+
 @media all and (max-width: 600px) {
   body {
     /* width: 500px; */
@@ -138,36 +182,12 @@ h4 {
   .author-level {
     margin-right: 30px;
   }
-}
 
-.highlighted-word {
-  color: #023047;
-}
-
-.quiz-comment-box {
-  width: 100%;
-}
-
-.toggle-story-btn,
-.toggle-quiz-btn {
-  font-family: "Fraunces", serif;
-  color: #023047;
-  font-size: 28px;
-  font-weight: 600;
-  width: 50%;
-  border-radius: 33px 33px 0px 0px;
-  border: none;
-  background: #fbf5e0;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  margin-top: 10px;
-  cursor: pointer;
-  opacity: 0.7;
-}
-
-.selected-btn {
-  background: #fdf0c3;
-  opacity: 1;
+  .toggle-story-btn,
+  .toggle-quiz-btn,
+  .selected-btn {
+    font-size: 22px;
+  }
 }
 
 /* ------------------------- NAV --------------------- */
@@ -195,7 +215,7 @@ h4 {
 }
 
 .nav,
-.nav-left,
+/* .nav-left, */
 .nav-right {
   color: #023047;
   display: flex;
@@ -216,13 +236,61 @@ h4 {
 .login {
   cursor: pointer;
   border: 2px solid #023047;
-  padding: 8px 16px;
+  /* padding: 8px 16px; */
+  padding: 0.3em 0.7em;
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  align-self: center;
 }
 
 @media all and (max-width: 600px) {
-  .nav-title {
-    font-size: 28px;
+  .nav {
+    height: 70px;
+    display: grid;
+    grid-template-columns: 80px 1fr 80px;
+    grid-template-rows: 0.8fr 0.2fr;
+    /* align-items: center;
+    justify-items: center; */
   }
+
+  .nav-title {
+    font-size: 26px;
+    /* grid-column: 2; */
+    /* margin-left: 20px; */
+    position: absolute;
+    top: 4px;
+    left: 0px;
+    width: 200px;
+  }
+
+  .nav-left {
+    grid-column: 2;
+    grid-row: 2;
+    width: auto;
+    /* align-self: flex-end;
+    justify-self: space-between; */
+    gap: 20px;
+    /* display: flex; */
+    /* margin-left: 40px; */
+  }
+
+  .nav-right {
+    width: auto;
+    grid-column: 3;
+    /* width: 80px; */
+  }
+
+  /* .nav-title {
+    justify-self: center;
+  } */
+
+  /* .login {
+    margin-right: 20px;
+  } */
 }
 
 /* ------------------------------ CARDS ----------------------------- */
@@ -368,7 +436,8 @@ h4 {
 }
 
 .answer {
-  padding: 5px 15px;
+  /* padding: 5px 15px; */
+  padding: 0.4em 0.7em;
   border: 1px solid #023047;
   box-sizing: border-box;
   border-radius: 1em;
@@ -411,7 +480,7 @@ h4 {
 
 .quiz-title-container {
   height: 35px;
-  width: 100%;
+  width: 50%;
   color: rgba(0, 0, 0, 0.5);
   font-weight: 600;
   font-family: "Commissioner", sans-serif;
@@ -435,7 +504,8 @@ h4 {
   margin-bottom: 25px;
   font-family: "Commissioner", sans-serif;
   font-weight: 200;
-  padding: 6px 30px;
+  /* padding: 6px 30px; */
+  padding: 0.4em 1.2em;
   font-size: 18px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
@@ -471,6 +541,22 @@ h4 {
   background-color: rgba(237, 17, 17, 0.68);
 }
 
+@media all and (max-width: 600px) {
+  .quiz-title-container {
+    width: 90%;
+  }
+
+  .check-btn,
+  .again-btn,
+  .post-btn {
+    font-size: 16px;
+  }
+
+  .answer {
+    font-size: 12px;
+  }
+}
+
 /* ----------------------------- TEXTAREA -------------------------- */
 
 .comment-section-container {
@@ -490,12 +576,13 @@ h4 {
   grid-template-rows: 0.1fr 0.1fr 0.6fr 0.1fr;
   align-items: center;
   justify-items: center;
+  gap: 10px;
 }
 
 .comment-section-title {
   margin-top: 20px;
   color: #023047;
-  font-size: 28px;
+  /* font-size: 28px; */
   font-weight: 600;
   grid-row: 1;
   grid-column: 1 / -1;
@@ -537,6 +624,7 @@ h4 {
   grid-column: 1;
   grid-row: 3;
   align-self: flex-start;
+  margin-top: 10px;
 }
 
 .more-stories {
@@ -563,7 +651,7 @@ h4 {
 .checklist-items {
   grid-column: 2;
   justify-self: start;
-  font-size: 22px;
+  /* font-size: 22px; */
   font-weight: 400;
   color: rgba(2, 48, 71, 0.4);
 }
@@ -576,6 +664,22 @@ h4 {
 .check {
   width: 25px;
   height: 25px;
+}
+
+@media all and (max-width: 600px) {
+  .more-stories {
+    margin-right: 20px;
+  }
+
+  .comment-section {
+    width: 100%;
+  }
+
+  .textarea {
+    height: 250px;
+    width: 65%;
+    font-size: 12px;
+  }
 }
 
 /* ------------------------------- POSTED --------------------------------*/

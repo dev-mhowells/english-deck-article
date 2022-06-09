@@ -163,12 +163,12 @@ export default function Comments(props) {
     <div>
       <div className="comment-section-container">
         <div className="comment-section">
-          <h2 className="comment-section-title">
+          <h4 className="comment-section-title">
             Practice using the words from the article
-          </h2>
-          <h4 className="comment-section-subtitle">
-            Leave a comment or tell your own story!
           </h4>
+          <p className="comment-section-subtitle">
+            <b>Leave a comment or tell your own story!</b>
+          </p>
           <div className="post-box">
             <textarea
               className="textarea"
@@ -190,7 +190,7 @@ export default function Comments(props) {
         </div>
       </div>
       <div className="posts-container">
-        <h2 className="comments-title">Comments and Stories</h2>
+        <h3 className="comments-title">Comments and Stories</h3>
         <div className="comment-slider">
           <img
             src={leftTriangle}

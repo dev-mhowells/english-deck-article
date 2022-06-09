@@ -35,7 +35,9 @@ export default function QuestionAns(props) {
 
   return (
     <div className="qa-container">
-      <h4 className="question">{props.question}</h4>
+      <p className="question">
+        <b>{props.question}</b>
+      </p>
       <div className="answer-box">{allAnswers}</div>
     </div>
   );
