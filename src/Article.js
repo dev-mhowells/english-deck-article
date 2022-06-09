@@ -118,7 +118,7 @@ export default function Article(props) {
   // passes in group and identifier of group as groupNumber so card can be id'd and saved
   const flashymap = flashcards.map((group, i) =>
     i % 2 !== 0 ? (
-      <div className="card-text-pair">
+      <div className="card-text-pair ">
         <Flashcards
           savedCards={savedCards}
           save={save}
@@ -131,7 +131,7 @@ export default function Article(props) {
         {<p className="article-text test-flex">{highlightWords(text[1])}</p>}
       </div>
     ) : (
-      <div className="card-text-pair">
+      <div className="card-text-pair first-pair">
         <p className="article-text">{highlightWords(text[0])}</p>
         <Flashcards
           savedCards={savedCards}

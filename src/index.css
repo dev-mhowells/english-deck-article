@@ -40,6 +40,14 @@ h4 {
     font-size: 16px;
   }
 
+  h2 {
+    font-size: 32px;
+  }
+
+  h3 {
+    font-size: 30px;
+  }
+
   h4 {
     font-size: 22px;
   }
@@ -159,6 +167,19 @@ h4 {
     font-size: 16px;
   }
 
+  .title-image {
+    width: 200px;
+  }
+
+  .image-border {
+    height: 250px;
+    width: 250px;
+  }
+
+  .title-image-container {
+    height: 350px;
+  }
+
   .article-container {
     min-width: 90%;
     max-width: 100%;
@@ -169,12 +190,22 @@ h4 {
     grid-template-columns: 1fr;
     grid-template-rows: 0.5fr 1fr;
   }
+  .first-pair .article-text {
+    grid-row: 2;
+  }
 
   .article-container {
     width: 100%;
   }
 
+  .article-title-container {
+    margin-bottom: 15px;
+    margin-top: 10px;
+  }
+
   .article-text {
+    margin-top: 10px;
+    margin-bottom: 10px;
     font-size: 16px;
     line-height: 25px;
   }
@@ -323,8 +354,8 @@ h4 {
 
 @media all and (max-width: 600px) {
   .card-main {
-    width: 80%;
-    height: 280px;
+    width: 300px;
+    height: 220px;
   }
 }
 
@@ -425,6 +456,45 @@ h4 {
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+@media all and (max-width: 600px) {
+  .arrow {
+    height: 35px;
+    width: auto;
+  }
+
+  .dot {
+    height: 12px;
+    width: auto;
+  }
+
+  .bottom-icons {
+    width: 300px;
+  }
+
+  .add-minus,
+  .minus {
+    height: 35px;
+    width: auto;
+  }
+
+  .flip {
+    height: 32px;
+    width: auto;
+  }
+
+  .card-back {
+    max-width: 300px;
+  }
+
+  .card-back p {
+    font-size: 12px;
+  }
+
+  .definition {
+    width: 280px;
+  }
 }
 
 /* --------------------------------- QUIZ ------------------------ */
@@ -546,6 +616,10 @@ h4 {
     width: 90%;
   }
 
+  .quiz-title {
+    font-size: 18px;
+  }
+
   .check-btn,
   .again-btn,
   .post-btn {
@@ -554,6 +628,15 @@ h4 {
 
   .answer {
     font-size: 12px;
+  }
+
+  .answer-box {
+    margin-right: 10px;
+    margin-left: 10px;
+  }
+
+  .question {
+    margin-left: 10px;
   }
 }
 
@@ -696,7 +779,7 @@ h4 {
   font-family: "Fraunces";
   font-style: normal;
   font-weight: 600;
-  font-size: 42px;
+  /* font-size: 42px; */
   color: #023047;
   margin-top: 30px;
 }
@@ -750,10 +833,43 @@ h4 {
 
 .post-body {
   grid-column: 1 / -1;
+  font-size: 18px;
+}
+
+.post-author {
+  font-size: 18px;
 }
 
 .triangle {
   cursor: pointer;
+}
+
+@media all and (max-width: 600px) {
+  .posted-story {
+    width: 250px;
+    padding: 20px;
+    gap: 10px;
+  }
+
+  .comments-title {
+    margin-top: 10px;
+  }
+
+  .comment-slider {
+    gap: 5px;
+    margin-right: 5px;
+    margin-left: 5px;
+    margin-bottom: 10px;
+  }
+
+  .post-body,
+  .post-author {
+    font-size: 12px;
+  }
+
+  .posts-container {
+    height: 350px;
+  }
 }
 
 /* --------------- footer ------------------- */
@@ -780,4 +896,10 @@ footer > * {
 .disabled {
   opacity: 0.5;
   cursor: auto;
+}
+
+@media all and (max-width: 600px) {
+  footer {
+    height: 40px;
+  }
 }

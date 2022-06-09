@@ -51,7 +51,13 @@ export default function Flashcards(props) {
   }
   // creates correct number of nav dots depending on no. of cards, controls movement of filled dot
   const createDots = props.flashcards.map((card, i) => {
-    return <img src={count === i ? dot : emptyDot} key={card.title}></img>;
+    return (
+      <img
+        className="dot"
+        src={count === i ? dot : emptyDot}
+        key={card.title}
+      ></img>
+    );
   });
 
   return (
