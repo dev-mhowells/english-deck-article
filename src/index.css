@@ -519,6 +519,7 @@ h4 {
   background: transparent;
   font-family: "Commissioner", sans-serif;
   font-weight: 500;
+  color: black;
 }
 
 .faded {
@@ -617,7 +618,13 @@ h4 {
 }
 
 @media all and (max-width: 600px) {
+  .app-container {
+    height: 590px;
+    margin-top: -2px;
+  }
+
   .quiz-title-container {
+    margin-top: 10px;
     width: 90%;
   }
 
@@ -629,6 +636,10 @@ h4 {
   .again-btn,
   .post-btn {
     font-size: 16px;
+  }
+
+  .check-btn {
+    margin-bottom: 10px;
   }
 
   .answer {
@@ -648,6 +659,7 @@ h4 {
 /* ----------------------------- TEXTAREA -------------------------- */
 
 .comment-section-container {
+  margin-top: -5px;
   width: 100%;
   height: 550px;
   background: #fdf0c3;
@@ -756,11 +768,12 @@ h4 {
 
 @media all and (max-width: 600px) {
   .comment-section-container {
-    height: 580px;
+    height: 590px;
+    margin-top: -2px;
   }
 
   .comment-section {
-    height: 580px;
+    height: 590px;
     display: grid;
     grid-template-columns: none;
     grid-template-rows: 0.1fr 0.1fr 0.3fr 0.3fr 0.1fr;
@@ -775,7 +788,7 @@ h4 {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    height: 120px;
+    height: 140px;
     /* margin-right: 220px; */
     justify-self: flex-start;
     margin-left: 10%;
@@ -821,7 +834,7 @@ h4 {
 
   .post-btn {
     margin-top: 15px;
-    margin-bottom: 15px;
+    margin-bottom: 8px;
   }
 }
 
