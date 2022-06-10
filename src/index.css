@@ -392,9 +392,9 @@ h4 {
   cursor: pointer;
 }
 
-.add-minus:active {
+/* .add-minus:active {
   background-image: url("./icons/add-filled.png");
-}
+} */
 
 .minus {
   display: grid;
@@ -494,6 +494,11 @@ h4 {
 
   .definition {
     width: 280px;
+  }
+
+  .saved-cards-title {
+    margin-top: 10px;
+    /* margin-bottom: 15px; */
   }
 }
 
@@ -750,18 +755,73 @@ h4 {
 }
 
 @media all and (max-width: 600px) {
+  .comment-section-container {
+    height: 580px;
+  }
+
+  .comment-section {
+    height: 580px;
+    display: grid;
+    grid-template-columns: none;
+    grid-template-rows: 0.1fr 0.1fr 0.3fr 0.3fr 0.1fr;
+  }
+
+  /* .checklist-items {
+    grid-column: 1;
+  } */
+
+  .checklist-container {
+    grid-row: 3;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    height: 120px;
+    /* margin-right: 220px; */
+    justify-self: flex-start;
+    margin-left: 10%;
+  }
+
+  .check-word-pair {
+    margin-bottom: 10px;
+    max-width: 150px;
+    grid-template-columns: 30px 1fr;
+    gap: 3px;
+  }
+
+  .check {
+    height: 15px;
+    width: auto;
+  }
+
   .more-stories {
     margin-right: 20px;
+    grid-column: 1;
+    grid-row: 5;
   }
 
   .comment-section {
     width: 100%;
   }
 
+  .post-box {
+    grid-row: 4;
+    grid-column: 1;
+  }
+
+  .comment-section-title {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
   .textarea {
-    height: 250px;
-    width: 65%;
-    font-size: 12px;
+    height: 200px;
+    width: 80%;
+    font-size: 16px;
+  }
+
+  .post-btn {
+    margin-top: 15px;
+    margin-bottom: 15px;
   }
 }
 
@@ -864,11 +924,16 @@ h4 {
 
   .post-body,
   .post-author {
-    font-size: 12px;
+    font-size: 13px;
   }
 
   .posts-container {
     height: 350px;
+  }
+
+  .triangle {
+    width: 24px;
+    height: 26px;
   }
 }
 
