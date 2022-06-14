@@ -9,7 +9,7 @@ English Deck is as a minimum viable product for an e-learning platform
 
 ## Technology
 
-          The entire app is designed to be a reusable article template, and the
+The entire app is designed to be a reusable article template, and the
           app itself also contains reusable components. It therefore made sense to
           create the app with React. Using Firebase was also an obvious choice as
           it allows for rapid development both in terms of storage and user
@@ -17,7 +17,7 @@ English Deck is as a minimum viable product for an e-learning platform
 
 ### Challenges and Improvements
 
-        Organising the information flow between components was tricky and I
+Organising the information flow between components was tricky and I
           considered whether I would need to use the Context API in order to avoid
           prop drilling. Ultimately, this wasn’t necessary and the project mainly
           relies on the use of props and the useState and useEffect hooks.
@@ -30,7 +30,7 @@ English Deck is as a minimum viable product for an e-learning platform
 
 ### Lessons Learned
 
-              Despite the relatively small scale of the project, the integration of a
+Despite the relatively small scale of the project, the integration of a
           number of distinct components required considerable thought for
           organisation. This was especially true in relation to managing the flow
           of information between parent and child components in React.
