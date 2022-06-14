@@ -22,7 +22,7 @@ Organising the information flow between components was tricky and I
           prop drilling. Ultimately, this wasn’t necessary and the project mainly
           relies on the use of props and the useState and useEffect hooks.
           
-                    I would like to come back to the project and use it as an opportunity to
+I would like to come back to the project and use it as an opportunity to
           learn more about the Firestore data model and NoSQL databases. I think
           this would also be a good opportunity to incorporate React Router and
           scale the app into a site which can easily be updated with more
@@ -36,12 +36,12 @@ Despite the relatively small scale of the project, the integration of a
           of information between parent and child components in React.
   
      
-          The project was large enough in scale to allow me to deepen my
+The project was large enough in scale to allow me to deepen my
           understanding of React Hooks, and I’m looking forward to working on
           something which will allow me to work more with other elements of React,
           such as the Context API and Custom Hooks.
       
-            Working with React and Firebase was also an excellent chance to practice
+Working with React and Firebase was also an excellent chance to practice
           more with asynchronous JavaScript and introduced a new set of challenges
           (and a new set of error codes!), which gave me a deeper understanding of
           asynchronicity, callback functions and promises.
