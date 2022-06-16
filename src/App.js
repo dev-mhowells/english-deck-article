@@ -5,7 +5,6 @@ import { auth, provider } from "./firebase-config";
 
 export default function App() {
   // ---------------------- FIREBASE GOOGLE SIGN IN ------------------------- //
-  const [isAuth, setIsAuth] = React.useState(false);
 
   // authstatechange sets userIn on log in and log out
   const [userIn, setUserIn] = React.useState({});
@@ -15,17 +14,11 @@ export default function App() {
   });
 
   function googleSignIn() {
-    signInWithPopup(auth, provider).then((result) => {
-      localStorage.setItem("isAuth", true);
-      setIsAuth(true);
-    });
+    signInWithPopup(auth, provider);
   }
 
   function googleSignOut() {
-    signOut(auth).then(() => {
-      localStorage.clear();
-      setIsAuth(false);
-    });
+    signOut(auth);
   }
   // --------------------------------------------------------------------------//
 
@@ -40,7 +33,6 @@ export default function App() {
         <div className="nav-title">
           <h1 className="nav-title">English Deck</h1>
         </div>
-
         <div className="nav-right">
           <p
             className="nav-link login"
@@ -50,7 +42,7 @@ export default function App() {
           </p>
         </div>
       </nav>
-      <Article isAuth={isAuth} userIn={userIn} googleSignIn={googleSignIn} />
+      <Article userIn={userIn} googleSignIn={googleSignIn} />
       <footer>
         <p>Home</p>
         <p>Contact</p>

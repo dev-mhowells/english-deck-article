@@ -11,8 +11,8 @@ import eye from "./images/eye.png";
 
 export default function Article(props) {
   //----------------------------FIREBASE-----------------------------
-  const [flashcards, setFlashcards] = React.useState([]); // data from firebase
-  const [text, setText] = React.useState("");
+  const [flashcards, setFlashcards] = React.useState([]); // flashcard data from firebase
+  const [text, setText] = React.useState([]); // article sections from firebase
 
   React.useEffect(() => {
     async function getFlashcards() {
@@ -46,19 +46,7 @@ export default function Article(props) {
 
   const [savedCards, setSavedCards] = React.useState([]); // tracks cards saved by user
   const [quizStoryDisp, setQuizStoryDisp] = React.useState(true); // tracks display of either quiz or comments section
-  // const [showSaved, setShowsaved] = React.useState(false);
 
-  // function showIfSaved(count, groupNumber) {
-  //   for (let savedCard of savedCards) {
-  //     if (flashcards[groupNumber][count].title === savedCard.title) {
-  //       setShowsaved(true);
-  //       console.log(count, groupNumber, "black");
-  //     } else {
-  //       setShowsaved(false);
-  //       console.log(count, groupNumber, "white");
-  //     }
-  //   }
-  // }
   // count is passed into the function in Flashcard.js to ensure current card is saved!
   // groupNumber is passed in to ensure the correct flashcard group
   function save(count, groupNumber) {
@@ -123,10 +111,7 @@ export default function Article(props) {
           savedCards={savedCards}
           save={save}
           flashcards={group}
-          // setFlashcards={setFlashcards}
           groupNumber={i}
-          // showSaved={showSaved}
-          // showIfSaved={showIfSaved}
         />
         {<p className="article-text test-flex">{highlightWords(text[1])}</p>}
       </div>
@@ -138,8 +123,6 @@ export default function Article(props) {
           save={save}
           flashcards={group}
           groupNumber={i}
-          // showSaved={showSaved}
-          // showIfSaved={showIfSaved}
         />
       </div>
     )
@@ -172,7 +155,6 @@ export default function Article(props) {
         <div>
           <h3 className="saved-cards-title">Your Review Deck</h3>
           <Flashcards
-            // savedCards={savedCards}
             save={save}
             flashcards={savedCards}
             deleteCard={deleteCard}
@@ -197,7 +179,6 @@ export default function Article(props) {
         ) : (
           <Comments
             flashcards={flashcards}
-            isAuth={props.isAuth}
             userIn={props.userIn}
             googleSignIn={props.googleSignIn}
           />

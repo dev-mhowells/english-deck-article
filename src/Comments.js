@@ -86,13 +86,14 @@ export default function Comments(props) {
     setUserStory(e.target.value);
 
     for (let i in checklist) {
+      let userStoryLower = userStory.toLocaleLowerCase();
       if (
-        userStory.includes(checklist[i]) &&
+        userStoryLower.includes(checklist[i]) &&
         !usedWords.includes(checklist[i])
       ) {
         setUsedWords((prevUsedWords) => [...prevUsedWords, checklist[i]]);
       } else if (
-        !userStory.includes(checklist[i]) &&
+        !userStoryLower.includes(checklist[i]) &&
         usedWords.includes(checklist[i])
       ) {
         setUsedWords((prevUsedWords) =>
