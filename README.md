@@ -1,70 +1,49 @@
-# Getting Started with Create React App
+# Summary
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+English Deck is as a minimum viable product for an e-learning platform
+          built with React. The goal was to create highly interactive articles for
+          English learners which included flashcards, a quiz, and a section for
+          writing practice and reading submissions from other learners. The
+          information from each of these elements is stored and retrieved from
+          Firebase on the back-end.
 
-## Available Scripts
+## Technology
 
-In the project directory, you can run:
+The entire app is designed to be a reusable article template, and the
+          app itself also contains reusable components. It therefore made sense to
+          create the app with React. Using Firebase was also an obvious choice as
+          it allows for rapid development both in terms of storage and user
+          authentication.
 
-### `npm start`
+### Challenges and Improvements
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Organising the information flow between components was tricky and I
+          considered whether I would need to use the Context API in order to avoid
+          prop drilling. Ultimately, this wasn’t necessary and the project mainly
+          relies on the use of props and the useState and useEffect hooks.
+          
+I would like to come back to the project and use it as an opportunity to
+          learn more about the Firestore data model and NoSQL databases. I think
+          this would also be a good opportunity to incorporate React Router and
+          scale the app into a site which can easily be updated with more
+          interactive articles which follow the same template.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Lessons Learned
 
-### `npm test`
+Despite the relatively small scale of the project, the integration of a
+          number of distinct components required considerable thought for
+          organisation. This was especially true in relation to managing the flow
+          of information between parent and child components in React.
+  
+     
+The project was large enough in scale to allow me to deepen my
+          understanding of React Hooks, and I’m looking forward to working on
+          something which will allow me to work more with other elements of React,
+          such as the Context API and Custom Hooks.
+      
+Working with React and Firebase was also an excellent chance to practice
+          more with asynchronous JavaScript and introduced a new set of challenges
+          (and a new set of error codes!), which gave me a deeper understanding of
+          asynchronicity, callback functions and promises.
+      
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
